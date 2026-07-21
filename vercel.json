@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "name": "money-ia",
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": "mvp",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/mvp/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/mvp/(.*)",
+      "headers": [
+        { "key": "Service-Worker-Allowed", "value": "/" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/mvp/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    }
+  ]
+}
