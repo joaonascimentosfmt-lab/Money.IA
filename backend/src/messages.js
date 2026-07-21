@@ -94,7 +94,7 @@ async function sendWelcomeMessage(to) {
   await whatsapp.sendInteractiveButtons(
     to,
     'MONE - Money Adega & Tabacaria',
-    'Ola! Eu sou a Mone, sua assistente virtual.\n\nComo posso ajudar hoje?',
+    'Ola! Eu sou a Money, sua assistente virtual.\n\nComo posso ajudar hoje?',
     'Seu role comeca aqui.',
     [
       { id: 'ver_cardapio', title: 'Ver cardapio' },

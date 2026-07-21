@@ -8,7 +8,7 @@ MONE e um assistente virtual inteligente para WhatsApp e Web, desenvolvido para 
 
 MONE nao e um ERP nem realiza gestao empresarial. Seu unico proposito e atender clientes de forma natural e eficiente, convertendo visitantes em compradores.
 
-- **Nome:** Mone
+- **Nome:** Money
 - **Empresa:** Money Adega & Tabacaria
 - **Slogan:** Seu role comeca aqui.
 - **Personalidade:** Simpatica, descontraida, educada, objetiva, inteligente, bem-humorada, especialista em bebidas e tabacaria.
@@ -62,7 +62,7 @@ mvp/
   - Tela de splash com animacao
   - Header com avatar e status online
   - Sidebar de navegacao
-  - Balao de chat com avatar da Mone
+  - Balao de chat com avatar da Money
   - Grade de produtos com categorias
   - Carrinho lateral (drawer)
   - Modal de checkout
@@ -86,7 +86,7 @@ mvp/
 ```
 Entrada (Splash)
   -> Tela de Chat
-    -> Mensagem de boas-vindas da Mone
+    -> Mensagem de boas-vindas da Money
       -> Interacao natural
         -> Pesquisa de produtos
         -> Recomendacoes

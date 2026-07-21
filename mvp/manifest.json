@@ -1,6 +1,6 @@
 {
-  "name": "Mone - Money Adega & Tabacaria",
-  "short_name": "Mone",
+  "name": "Money - Money Adega & Tabacaria",
+  "short_name": "Money",
   "description": "Assistente oficial da Money Adega & Tabacaria. Compre bebidas, pods e muito mais.",
   "start_url": "/mvp/index.html",
   "display": "standalone",

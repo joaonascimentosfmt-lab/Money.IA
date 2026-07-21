@@ -35,7 +35,7 @@
 **Objetivo:** Implementar interface de chat com respostas inteligentes
 
 - [x] Criar container de mensagens com scroll automatico
-- [x] Implementar baloes de conversa (Mone x Usuario)
+- [x] Implementar baloes de conversa (Money x Usuario)
 - [x] Adicionar input com suporte a Enter
 - [x] Implementar botoes de acao rapida
 - [x] Criar indicador de digitacao (typing indicator)
@@ -114,7 +114,7 @@
 **Objetivo:** Integrar GPT-4 para conversas naturais
 
 - [ ] Configurar integracao com OpenAI API
-- [ ] Desenvolver system prompt com personalidade e regras da Mone
+- [ ] Desenvolver system prompt com personalidade e regras da Money
 - [ ] Implementar gerenciamento de contexto por sessao (Redis)
 - [ ] Criar classificador de intencao (saudacao, produto, preco, pedido, suporte)
 - [ ] Implementar busca semantica de produtos (embeddings + pgvector)

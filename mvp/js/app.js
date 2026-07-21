@@ -444,7 +444,7 @@ function handleInteractiveAction(action) {
 
 function sendWelcomeInteractive() {
   addMessageWithButtons(
-    'Ola! Eu sou a Mone, sua assistente virtual.\n\nComo posso ajudar hoje?',
+    'Ola! Eu sou a Money, sua assistente virtual.\n\nComo posso ajudar hoje?',
     [
       { id: 'ver_cardapio', title: 'Ver cardapio' },
       { id: 'promocoes', title: 'Promocoes' },
@@ -511,7 +511,7 @@ function getCategoryLabel(category) {
   return labels[category] || category;
 }
 
-function getMoneResponse(input) {
+function getMoneyResponse(input) {
   const q = input.toLowerCase().trim();
 
   if (handleInteractiveAction(input)) return null;
@@ -636,7 +636,7 @@ function handleUserMessage(input) {
 
   setTimeout(() => {
     hideTyping();
-    const response = getMoneResponse(text);
+    const response = getMoneyResponse(text);
     if (response) {
       addMessage(response, 'mone');
     }
