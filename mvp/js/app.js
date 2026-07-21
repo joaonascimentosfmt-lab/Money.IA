@@ -155,25 +155,6 @@ function addMessage(text, type = 'mone') {
   dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
 }
 
-function addMessage(text, type = 'mone') {
-  const div = document.createElement('div');
-  div.className = `message ${type}`;
-  if (type === 'mone') {
-    div.innerHTML = `
-      <div class="message-avatar">
-        <svg viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-          <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-        </svg>
-      </div>
-      <div class="message-content">${text}</div>`;
-  } else {
-    div.innerHTML = `<div class="message-content">${text}</div>`;
-  }
-  dom.chatMessages.appendChild(div);
-  dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
-}
-
 function addMessageWithButtons(text, buttons, headerText, footerText) {
   const div = document.createElement('div');
   div.className = 'message mone';
@@ -450,7 +431,7 @@ function sendWelcomeInteractive() {
       { id: 'promocoes', title: 'Promocoes' },
       { id: 'falar_atendente', title: 'Falar com atendente' }
     ],
-    'MONE - Money Adega & Tabacaria',
+    'MONEY - Money Adega & Tabacaria',
     'Seu role comeca aqui.'
   );
 }
