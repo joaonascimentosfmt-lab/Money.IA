@@ -12,7 +12,14 @@ const state = {
   order: null,
   selectedCategory: 'all',
   isTyping: false,
-  chatHistory: []
+  chatHistory: [],
+  apiUrl: localStorage.getItem('mone_api_url') || '',
+  whatsappNumber: localStorage.getItem('mone_whatsapp') || ''
+};
+
+const CONFIG = {
+  apiUrl: state.apiUrl,
+  whatsappNumber: state.whatsappNumber
 };
 
 // ============================================
@@ -56,7 +63,13 @@ const dom = {
   clientPhone: $('clientPhone'),
   clientAddress: $('clientAddress'),
   paymentMethod: $('paymentMethod'),
-  orderNotes: $('orderNotes')
+  orderNotes: $('orderNotes'),
+  configApiUrl: $('configApiUrl'),
+  configWhatsApp: $('configWhatsApp'),
+  saveConfigApi: $('saveConfigApi'),
+  saveConfigWhatsApp: $('saveConfigWhatsApp'),
+  testBackendBtn: $('testBackendBtn'),
+  backendStatus: $('backendStatus')
 };
 
 // ============================================
@@ -140,6 +153,99 @@ function addMessage(text, type = 'mone') {
   }
   dom.chatMessages.appendChild(div);
   dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+}
+
+function addMessage(text, type = 'mone') {
+  const div = document.createElement('div');
+  div.className = `message ${type}`;
+  if (type === 'mone') {
+    div.innerHTML = `
+      <div class="message-avatar">
+        <svg viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
+          <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
+        </svg>
+      </div>
+      <div class="message-content">${text}</div>`;
+  } else {
+    div.innerHTML = `<div class="message-content">${text}</div>`;
+  }
+  dom.chatMessages.appendChild(div);
+  dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+}
+
+function addMessageWithButtons(text, buttons, headerText, footerText) {
+  const div = document.createElement('div');
+  div.className = 'message mone';
+  let html = `
+    <div class="message-avatar">
+      <svg viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
+        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
+      </svg>
+    </div>
+    <div class="message-content">
+      ${headerText ? `<strong>${headerText}</strong><br>` : ''}
+      <p>${text}</p>
+      ${footerText ? `<small style="color:var(--gray);font-size:11px;">${footerText}</small>` : ''}
+      <div class="reply-buttons">`;
+  buttons.forEach(btn => {
+    html += `<button class="reply-btn" data-action="${btn.id}">${btn.title}</button>`;
+  });
+  html += `</div></div>`;
+  div.innerHTML = html;
+  dom.chatMessages.appendChild(div);
+  dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+
+  div.querySelectorAll('.reply-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      handleUserMessage(btn.dataset.action);
+    });
+  });
+  return div;
+}
+
+function addMessageWithList(text, listTitle, buttonLabel, rows) {
+  const div = document.createElement('div');
+  div.className = 'message mone';
+  let html = `
+    <div class="message-avatar">
+      <svg viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
+        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
+      </svg>
+    </div>
+    <div class="message-content">
+      ${listTitle ? `<strong>${listTitle}</strong><br>` : ''}
+      <p>${text}</p>
+      <div class="list-message">
+        <button class="list-toggle-btn">${buttonLabel || 'Ver opcoes'}</button>
+        <div class="list-options hidden">
+          <div class="list-options-header">${listTitle || 'Opcoes'}</div>`;
+  rows.forEach(row => {
+    html += `<button class="list-option" data-action="${row.id}">
+      <span class="list-option-title">${row.title}</span>
+      ${row.description ? `<span class="list-option-desc">${row.description}</span>` : ''}
+    </button>`;
+  });
+  html += `</div></div></div>`;
+  div.innerHTML = html;
+  dom.chatMessages.appendChild(div);
+  dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+
+  const toggleBtn = div.querySelector('.list-toggle-btn');
+  const options = div.querySelector('.list-options');
+  toggleBtn.addEventListener('click', () => {
+    options.classList.toggle('hidden');
+  });
+
+  div.querySelectorAll('.list-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      options.classList.add('hidden');
+      handleUserMessage(btn.dataset.action);
+    });
+  });
+  return div;
 }
 
 function addProductMessage(product) {
@@ -261,180 +367,210 @@ const RESPONSES = {
   'problema': 'Vou encaminhar para nossa equipe de suporte. Eles vao te ajudar rapidamente.'
 };
 
+function handleInteractiveAction(action) {
+  const q = action.toLowerCase().trim();
+
+  if (q === 'menu' || q === 'inicio' || q === 'comecar') {
+    sendWelcomeInteractive();
+    return true;
+  }
+  if (q === 'ver_cardapio' || q === 'produtos' || q === 'catalogo') {
+    sendCategoryListInteractive();
+    return true;
+  }
+  if (q === 'promocoes' || q === 'promocao' || q === 'ofertas') {
+    sendPromotionsInteractive();
+    return true;
+  }
+  if (q === 'horario' || q === 'endereco' || q === 'info') {
+    addMessage('📍 ' + STORE_INFO.address + '\n\n🕐 ' + STORE_INFO.hours + '\n\n📞 ' + STORE_INFO.phone + '\n\n💳 Aceitamos: ' + STORE_INFO.paymentMethods);
+    return true;
+  }
+  if (q === 'delivery' || q === 'entrega' || q === 'taxa') {
+    addMessage('🚚 Taxa de entrega: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n📦 Pedido minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n⏱️ Tempo medio: ' + STORE_INFO.avgTime + '\n📍 Bairros: ' + STORE_INFO.neighborhoods.join(', '));
+    addMessageWithButtons('Quer voltar ao menu?', [
+      { id: 'menu', title: 'Voltar ao menu' },
+      { id: 'comprar', title: 'Fazer pedido' }
+    ]);
+    return true;
+  }
+  if (q === 'comprar' || q === 'add_carrinho') {
+    if (state.cart.length === 0) {
+      addMessage('Seu carrinho esta vazio. Navegue pelos produtos e adicione itens!');
+      sendCategoryListInteractive();
+    } else {
+      switchView('order');
+      renderOrder();
+    }
+    return true;
+  }
+  if (q === 'falar_atendente' || q === 'falare_atendente' || q === 'humano' || q === 'atendente') {
+    addMessage('Vou transferir para um atendente humano. Um momento, por favor.');
+    return true;
+  }
+  if (q.startsWith('cat_')) {
+    const category = q.replace('cat_', '');
+    const products = getProductsByCategory(category);
+    if (products.length) {
+      addMessage('Categoria: ' + getCategoryLabel(category));
+      sendProductsListInteractive(products);
+    }
+    return true;
+  }
+  if (q.startsWith('prod_')) {
+    const id = q.replace('prod_', '');
+    const product = getProductById(id);
+    if (product) {
+      addProductMessage(product);
+      addMessageWithButtons('Quer adicionar ao carrinho?', [
+        { id: 'add_' + id, title: 'Adicionar' },
+        { id: 'cat_' + product.category, title: 'Ver mais' },
+        { id: 'menu', title: 'Menu' }
+      ]);
+    }
+    return true;
+  }
+  if (q.startsWith('add_')) {
+    const id = q.replace('add_', '');
+    const product = getProductById(id);
+    if (product) {
+      addToCart(id);
+      addMessage(product.name + ' adicionado ao carrinho!');
+    }
+    return true;
+  }
+  return false;
+}
+
+function sendWelcomeInteractive() {
+  addMessageWithButtons(
+    'Ola! Eu sou a Mone, sua assistente virtual.\n\nComo posso ajudar hoje?',
+    [
+      { id: 'ver_cardapio', title: 'Ver cardapio' },
+      { id: 'promocoes', title: 'Promocoes' },
+      { id: 'falar_atendente', title: 'Falar com atendente' }
+    ],
+    'MONE - Money Adega & Tabacaria',
+    'Seu role comeca aqui.'
+  );
+}
+
+function sendCategoryListInteractive() {
+  const rowActions = [
+    { id: 'cat_whisky', title: 'Whiskies' },
+    { id: 'cat_vodka', title: 'Vodkas' },
+    { id: 'cat_gin', title: 'Gins' },
+    { id: 'cat_cerveja', title: 'Cervejas' },
+    { id: 'cat_vinho', title: 'Vinhos' },
+    { id: 'cat_espumante', title: 'Espumantes' },
+    { id: 'cat_pods', title: 'Pods e Vapes' },
+    { id: 'cat_energetico', title: 'Energeticos' },
+    { id: 'cat_tabacaria', title: 'Tabacaria' },
+    { id: 'cat_acessorios', title: 'Acessorios' }
+  ];
+  addMessageWithList(
+    'Escolha uma categoria para ver nossos produtos:',
+    'Nosso Cardapio',
+    'Ver categorias',
+    rowActions
+  );
+}
+
+function sendProductsListInteractive(products) {
+  const rows = products.map(p => ({
+    id: 'prod_' + p.id,
+    title: p.name,
+    description: 'R$ ' + p.price.toFixed(2)
+  }));
+  addMessageWithList(
+    'Produtos disponiveis:',
+    null,
+    'Ver produtos',
+    rows
+  );
+}
+
+function sendPromotionsInteractive() {
+  addMessage('Confira nossas promocoes especiais!\n\n🔥 Whisky acima de R$ 150: leve gelo com desconto\n🍺 Heineken: leve 6 e pague 5\n💨 Pods Ignite com 10% off');
+  addMessageWithButtons(
+    'Quer ver o cardapio completo?',
+    [
+      { id: 'ver_cardapio', title: 'Ver cardapio' },
+      { id: 'menu', title: 'Voltar ao menu' }
+    ]
+  );
+}
+
+function getCategoryLabel(category) {
+  const labels = {
+    whisky: 'Whiskies', vodka: 'Vodkas', gin: 'Gins',
+    cerveja: 'Cervejas', vinho: 'Vinhos', espumante: 'Espumantes',
+    pods: 'Pods e Vapes', energetico: 'Energeticos',
+    tabacaria: 'Tabacaria', acessorios: 'Acessorios'
+  };
+  return labels[category] || category;
+}
+
 function getMoneResponse(input) {
   const q = input.toLowerCase().trim();
 
-  // Check static responses first
+  if (handleInteractiveAction(input)) return null;
+
   for (const [key, response] of Object.entries(RESPONSES)) {
     if (q.includes(key) || q === key) {
       return response;
     }
   }
 
-  // Greetings
-  if (/^(oi|oie|oii|hey|hey|e aí|eai|falou|fala)/.test(q)) {
-    return 'Ola! Tudo bem? Como posso ajudar?';
+  if (/^(oi|oie|oii|hey|e aí|eai|falou|fala)/.test(q)) {
+    sendWelcomeInteractive();
+    return null;
   }
 
-  // Horario
   if (/horario|funcionamento|abre|aberto|abrir|fecha|fechado/.test(q)) {
-    return `Nosso horario de funcionamento:\n\n${STORE_INFO.hours}\n\nEsta aberto agora!`;
+    return 'Nosso horario:\n\n' + STORE_INFO.hours + '\n\nEsta aberto agora!';
   }
 
-  // Localizacao / endereco
   if (/localizacao|endereco|onde fica|fica|mapa|rua|bairro/.test(q)) {
-    return `Estamos localizados na:\n\n${STORE_INFO.address}\n\nTe esperamos!`;
+    return 'Estamos na:\n\n' + STORE_INFO.address + '\n\nTe esperamos!';
   }
 
-  // WhatsApp / telefone
   if (/whatsapp|whats|telefone|celular|contato|ligar|falar/.test(q)) {
-    return `Nosso WhatsApp:\n\n${STORE_INFO.phone}\n\nClique para falar conosco!`;
+    return 'Nosso WhatsApp:\n\n' + STORE_INFO.phone;
   }
 
-  // Instagram
   if (/instagram|insta|rede social/.test(q)) {
-    return `Nos siga no Instagram:\n\n${STORE_INFO.instagram}\n\nLá postamos novidades e promocoes!`;
+    return 'Nos siga: ' + STORE_INFO.instagram;
   }
 
-  // Pagamento
   if (/pagamento|pagar|pix|dinheiro|credito|debito|cartao|forma de pagamento/.test(q)) {
-    return `Aceitamos:\n\n${STORE_INFO.paymentMethods}\n\nQual e a melhor para voce?`;
+    return 'Aceitamos:\n\n' + STORE_INFO.paymentMethods;
   }
 
-  // Delivery / entrega
   if (/delivery|entrega|taxa|frete|bairro|entreg|receber/.test(q)) {
-    return `Entregamos na regiao de Cuiaba.\n\nTaxa de entrega: R$ ${STORE_INFO.deliveryFee.toFixed(2)}\nPedido minimo: R$ ${STORE_INFO.minOrder.toFixed(2)}\nTempo medio: ${STORE_INFO.avgTime}\n\nBairros atendidos: ${STORE_INFO.neighborhoods.join(', ')}`;
+    return '🚚 Taxa: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\nMinimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\nTempo: ' + STORE_INFO.avgTime + '\nBairros: ' + STORE_INFO.neighborhoods.join(', ');
   }
 
-  // Promocoes
   if (/promocao|promo|oferta|desconto|barato|queima/.test(q)) {
-    return `Temos promocoes especiais!\n\nNa compra de um whisky acima de R$ 150, leve gelo com desconto!\n\nFique de olho nas novidades do Instagram ${STORE_INFO.instagram}`;
+    sendPromotionsInteractive();
+    return null;
   }
 
-  // Whisky - specific brands
-  if (/jack|jack daniel/i.test(q) && !q.includes('preco') && !q.includes('quanto')) {
-    const products = searchProducts('jack daniels');
-    if (products.length) {
-      addProductsCarousel(products, 'Temos essas opcoes da Jack Daniels:');
-      return null;
-    }
+  const searchResults = searchProducts(q);
+  if (searchResults.length === 1) {
+    addProductMessage(searchResults[0]);
+    addMessageWithButtons('Quer adicionar ao carrinho?', [
+      { id: 'add_' + searchResults[0].id, title: 'Adicionar' },
+      { id: 'menu', title: 'Voltar ao menu' }
+    ]);
+    return null;
+  } else if (searchResults.length > 1) {
+    sendProductsListInteractive(searchResults);
+    return null;
   }
 
-  if (/red label|red/i.test(q) && /label|whisky|wisky|uísque/.test(q) || q === 'red' || q === 'tem red') {
-    addProductMessage(getProductById('whisky-003'));
-    return 'Esse e o nosso Red Label. Excelente whisky para o dia a dia!';
-  }
-
-  if (/black label|black/i.test(q) && /label|whisky|wisky/.test(q) || q === 'black' || q === 'tem black') {
-    addProductMessage(getProductById('whisky-004'));
-    return 'Black Label 12 anos. Um classico indispensavel!';
-  }
-
-  // Product search by category
-  if (/cerveja|beer|heineken|skol|brahma|amstel|corona|stella|budweiser|puro malte/.test(q)) {
-    const products = getProductsByCategory('cerveja');
-    addProductsCarousel(products, 'Aqui estao nossas cervejas:');
-    return 'Todas geladinhas, esperando por voce!';
-  }
-
-  if (/whisky|wisky|whiskey|uísque|escoces|bourbon/.test(q)) {
-    const products = getProductsByCategory('whisky');
-    addProductsCarousel(products, 'Nossos whiskies disponiveis:');
-    return 'Tem para todos os gostos e precos!';
-  }
-
-  if (/vodka|absolut|smirnoff|grey|ciroc/.test(q)) {
-    const products = getProductsByCategory('vodka');
-    addProductsCarousel(products, 'Essas sao nossas vodkas:');
-    return 'Qual vai ser a escolhida?';
-  }
-
-  if (/gin|gordon|tanqueray|bombay|beefeater/.test(q)) {
-    const products = getProductsByCategory('gin');
-    addProductsCarousel(products, 'Nossos gins disponiveis:');
-    return 'Otimos para um drink refrescante!';
-  }
-
-  if (/vinho|tinto|branco|cabernet|malbec|merlot|suave|seco/.test(q)) {
-    const products = getProductsByCategory('vinho');
-    addProductsCarousel(products, 'Selecao de vinhos:');
-    return 'Tem vinho para cada ocasiao!';
-  }
-
-  if (/espumante|chandon|perini|brut|moscatel|champagne/.test(q)) {
-    const products = getProductsByCategory('espumante');
-    addProductsCarousel(products, 'Nossos espumantes:');
-    return 'Para brindar os melhores momentos!';
-  }
-
-  if (/energetico|red bull|monster|energético/.test(q)) {
-    const products = getProductsByCategory('energetico');
-    addProductsCarousel(products, 'Energeticos disponiveis:');
-    return 'Para acompanhar seu drink ou dar aquela energia!';
-  }
-
-  if (/pod|vape|essencia|ignite|elf|descartavel|vapor/.test(q)) {
-    const products = getProductsByCategory('pods');
-    addProductsCarousel(products, 'Pods e Vapes disponiveis:');
-    return 'Tem opcoes para todos os gostos!';
-  }
-
-  if (/seda|piteira|isqueiro|narguile|fumo|palha|carvao|tabaco|tabacaria|bic|maçarico|macarico/.test(q)) {
-    const products = getProductsByCategory('tabacaria');
-    addProductsCarousel(products, 'Produtos de tabacaria:');
-    return 'Completando seu momento!';
-  }
-
-  if (/gelo|copo|agua|refrigerante|coca|acessorio/.test(q)) {
-    const products = getProductsByCategory('acessorios');
-    addProductsCarousel(products, 'Acessorios disponiveis:');
-    return 'Para deixar sua experiencia completa!';
-  }
-
-  // Product recommendations and comparisons
-  if (/qual whisky (e|é) melhor|melhor whisky|whisky bom/.test(q)) {
-    return 'Depende do seu gosto! Para quem esta comecando, recomendo o Red Label. Para algo mais refinado, o Black Label e Chivas sao excelentes. O Jack Daniels e classico para quem aprecia um Tennessee.';
-  }
-
-  if (/qual (whisky|wisky) (e|é) mais suave/.test(q)) {
-    return 'O Jameson e um whisky irlandes bem suave, excelente para quem nao gosta de um sabor muito forte. O Chivas 12 tambem e bem equilibrado.';
-  }
-
-  if (/qual gin (e|é) melhor|melhor gin/.test(q)) {
-    return 'O Tanqueray e o Bombay Sapphire sao os mais premium. O Gordon\'s e otimo para o custo-beneficio. Tudo depende do drink que voce vai fazer!';
-  }
-
-  if (/qual vodka (e|é) melhor|melhor vodka/.test(q)) {
-    return 'A Grey Goose e a Ciroc sao vodkas premium, mas a Absolut e a Smirnoff tem um excelente custo-beneficio.';
-  }
-
-  if (/qual cerveja (e|é) puro malte|puro malte/.test(q)) {
-    return 'Heineken e Stella Artois sao puro malte e tem aquele sabor diferenciado. A Heineken e a nossa mais vendida!';
-  }
-
-  if (/qual vinho combina com churrasco/.test(q)) {
-    return 'Para churrasco, recomendo um Malbec como o Casillero del Diablo ou um Cabernet Sauvignon. Eles harmonizam muito bem com carne vermelha!';
-  }
-
-  if (/qual (pod|vape) dura mais/.test(q)) {
-    return 'O Elf Bar BC5000 dura ate 5000 puffs e o Ignite Ice 6000 ate 6000 puffs. Sao os mais duradouros que temos!';
-  }
-
-  // Price queries
-  if (/quanto custa|preco|valor|qual (o|e) preco|qual valor|quanto (e|é)/.test(q)) {
-    const search = q.replace(/quanto custa|preco|valor|qual (o|e) preco|qual valor|quanto (e|é)/gi, '').trim();
-    if (search) {
-      const results = searchProducts(search);
-      if (results.length === 1) {
-        addProductMessage(results[0]);
-        return `Esse e o preco do ${results[0].name}.`;
-      } else if (results.length > 1) {
-        addProductsCarousel(results, 'Encontrei esses produtos:');
-        return null;
-      }
-    }
-    return 'Pode me dizer qual produto voce quer saber o preco?';
-  }
+  return 'Obrigado pela mensagem! Se tiver duvidas sobre produtos, precos, ou quiser fazer um pedido, e so me falar.';
+}
 
   // Generic product search
   const searchResults = searchProducts(q);
@@ -770,6 +906,54 @@ function renderProducts() {
 dom.productSearch.addEventListener('input', renderProducts);
 
 // ============================================
+// CONFIG
+// ============================================
+
+dom.configApiUrl.value = localStorage.getItem('mone_api_url') || '';
+dom.configWhatsApp.value = localStorage.getItem('mone_whatsapp') || '';
+
+dom.saveConfigApi.addEventListener('click', () => {
+  const url = dom.configApiUrl.value.trim();
+  localStorage.setItem('mone_api_url', url);
+  state.apiUrl = url;
+  CONFIG.apiUrl = url;
+  showToast('URL da API salva!');
+});
+
+dom.saveConfigWhatsApp.addEventListener('click', () => {
+  const num = dom.configWhatsApp.value.trim();
+  localStorage.setItem('mone_whatsapp', num);
+  state.whatsappNumber = num;
+  CONFIG.whatsappNumber = num;
+  showToast('Numero salvo!');
+});
+
+dom.testBackendBtn.addEventListener('click', async () => {
+  const url = dom.configApiUrl.value.trim();
+  if (!url) {
+    dom.backendStatus.textContent = 'Configure a URL primeiro';
+    dom.backendStatus.style.color = 'var(--danger)';
+    return;
+  }
+  dom.backendStatus.textContent = 'Testando...';
+  dom.backendStatus.style.color = 'var(--gray)';
+  try {
+    const res = await fetch(url + '/');
+    const data = await res.json();
+    if (data.status === 'running') {
+      dom.backendStatus.textContent = 'Backend online!';
+      dom.backendStatus.style.color = 'var(--success)';
+    } else {
+      dom.backendStatus.textContent = 'Backend respondeu, mas status inesperado';
+      dom.backendStatus.style.color = 'var(--gold)';
+    }
+  } catch (err) {
+    dom.backendStatus.textContent = 'Erro de conexao: ' + err.message;
+    dom.backendStatus.style.color = 'var(--danger)';
+  }
+});
+
+// ============================================
 // INIT
 // ============================================
 
@@ -778,6 +962,10 @@ function init() {
   renderProducts();
   renderOrder();
   updateCartBadge();
+  if (state.apiUrl) {
+    dom.backendStatus.textContent = 'Configurado';
+    dom.backendStatus.style.color = 'var(--success)';
+  }
 }
 
 init();

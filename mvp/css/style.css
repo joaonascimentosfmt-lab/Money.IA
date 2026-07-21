@@ -373,6 +373,113 @@ a { color: var(--gold); text-decoration: none; }
 .message-content p { margin-bottom: 4px; }
 .message-content p:last-child { margin-bottom: 0; }
 .message-content strong { color: var(--gold); }
+.message-content small { display: block; margin-top: 4px; }
+
+/* Reply buttons */
+.reply-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.reply-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-xl);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.reply-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* List message */
+.list-message {
+  margin-top: 8px;
+  position: relative;
+}
+.list-toggle-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--black-4);
+  border: 1px solid var(--gray-dark);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: border var(--transition);
+}
+.list-toggle-btn:hover {
+  border-color: var(--gold);
+}
+.list-toggle-btn::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+.list-options {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: var(--black-2);
+  border: 1px solid var(--black-4);
+  border-radius: var(--radius-md);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 10;
+  margin-bottom: 4px;
+  box-shadow: var(--shadow-lg);
+}
+.list-options.hidden { display: none; }
+.list-options-header {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--gold);
+  border-bottom: 1px solid var(--black-4);
+  position: sticky;
+  top: 0;
+  background: var(--black-2);
+}
+.list-option {
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--black-4);
+  color: var(--white-2);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.list-option:last-child { border-bottom: none; }
+.list-option:hover { background: var(--black-3); }
+.list-option-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+.list-option-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 2px;
+}
 
 /* Product card in chat */
 .product-card {
@@ -687,6 +794,18 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gray);
   line-height: 1.6;
 }
+.config-input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 8px;
+  background: var(--black);
+  border: 1px solid var(--black-4);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-size: 13px;
+  transition: border var(--transition);
+}
+.config-input:focus { border-color: var(--gold); }
 
 /* ============================================
    CART DRAWER
