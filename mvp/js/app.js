@@ -748,9 +748,11 @@ function renderProducts() {
     div.className = 'product-item';
     div.innerHTML = `
       <div class="product-item-img">${getProductIcon(p.category)}</div>
-      <div class="product-item-name">${p.name}</div>
-      <div class="product-item-desc">${p.description}</div>
-      <div class="product-item-price">R$ ${p.price.toFixed(2)}</div>
+      <div class="product-item-info">
+        <div class="product-item-name">${p.name}</div>
+        <div class="product-item-desc">${p.description}</div>
+        <div class="product-item-price">R$ ${p.price.toFixed(2)}</div>
+      </div>
       <button class="product-item-add" data-id="${p.id}">Adicionar</button>`;
     div.querySelector('.product-item-add').addEventListener('click', (e) => {
       e.stopPropagation();
