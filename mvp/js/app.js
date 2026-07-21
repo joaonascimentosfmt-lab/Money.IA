@@ -69,7 +69,10 @@ const dom = {
   saveConfigApi: $('saveConfigApi'),
   saveConfigWhatsApp: $('saveConfigWhatsApp'),
   testBackendBtn: $('testBackendBtn'),
-  backendStatus: $('backendStatus')
+  backendStatus: $('backendStatus'),
+  simInput: $('simInput'),
+  simSendBtn: $('simSendBtn'),
+  simResult: $('simResult')
 };
 
 // ============================================
@@ -904,7 +907,8 @@ dom.testBackendBtn.addEventListener('click', async () => {
     const res = await fetch(url + '/');
     const data = await res.json();
     if (data.status === 'running') {
-      dom.backendStatus.textContent = 'Backend online!';
+      const mode = data.mode ? ` (${data.mode})` : '';
+      dom.backendStatus.textContent = 'Backend online!' + mode;
       dom.backendStatus.style.color = 'var(--success)';
     } else {
       dom.backendStatus.textContent = 'Backend respondeu, mas status inesperado';
@@ -913,6 +917,41 @@ dom.testBackendBtn.addEventListener('click', async () => {
   } catch (err) {
     dom.backendStatus.textContent = 'Erro de conexao: ' + err.message;
     dom.backendStatus.style.color = 'var(--danger)';
+  }
+});
+
+dom.simInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') dom.simSendBtn.click(); });
+
+dom.simSendBtn.addEventListener('click', async () => {
+  const url = dom.configApiUrl.value.trim();
+  const text = dom.simInput.value.trim();
+  if (!url) {
+    dom.simResult.textContent = 'Configure a URL do backend primeiro';
+    return;
+  }
+  if (!text) {
+    dom.simResult.textContent = 'Digite uma mensagem (ex: ola, cardapio, whisky)';
+    return;
+  }
+  dom.simResult.textContent = 'Enviando...';
+  dom.simResult.style.color = 'var(--gray)';
+  try {
+    const res = await fetch(url + '/api/test/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
+    const data = await res.json();
+    if (data.success) {
+      dom.simResult.textContent = 'Mensagem processada pelo backend. Verifique o console do servidor para ver as respostas mockadas.';
+      dom.simResult.style.color = 'var(--success)';
+    } else {
+      dom.simResult.textContent = 'Erro: ' + (data.error || 'resposta inesperada');
+      dom.simResult.style.color = 'var(--danger)';
+    }
+  } catch (err) {
+    dom.simResult.textContent = 'Erro de conexao: ' + err.message;
+    dom.simResult.style.color = 'var(--danger)';
   }
 });
 

@@ -3,6 +3,8 @@ const axios = require('axios');
 const API_VERSION = 'v22.0';
 const BASE_URL = `https://graph.facebook.com/${API_VERSION}`;
 
+const IS_MOCK = !process.env.WHATSAPP_TOKEN || !process.env.WHATSAPP_PHONE_NUMBER_ID;
+
 function getHeaders() {
   return {
     Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
@@ -15,6 +17,10 @@ function getPhoneNumberId() {
 }
 
 async function sendMessage(to, payload) {
+  if (IS_MOCK) {
+    console.log(`[MOCK] sendMessage para ${to}:`, JSON.stringify(payload));
+    return { mock: true, to, messaging_product: 'whatsapp', status: 'simulated' };
+  }
   const url = `${BASE_URL}/${getPhoneNumberId()}/messages`;
   const body = {
     messaging_product: 'whatsapp',
