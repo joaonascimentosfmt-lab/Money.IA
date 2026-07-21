@@ -142,10 +142,7 @@ function addMessage(text, type = 'mone') {
   if (type === 'mone') {
     div.innerHTML = `
       <div class="message-avatar">
-        <svg viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-          <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-        </svg>
+        <img src="assets/icons/logo.jpeg" alt="M" />
       </div>
       <div class="message-content">${text}</div>`;
   } else {
@@ -160,10 +157,7 @@ function addMessageWithButtons(text, buttons, headerText, footerText) {
   div.className = 'message mone';
   let html = `
     <div class="message-avatar">
-      <svg viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-      </svg>
+      <img src="assets/icons/logo.jpeg" alt="M" />
     </div>
     <div class="message-content">
       ${headerText ? `<strong>${headerText}</strong><br>` : ''}
@@ -191,10 +185,7 @@ function addMessageWithList(text, listTitle, buttonLabel, rows) {
   div.className = 'message mone';
   let html = `
     <div class="message-avatar">
-      <svg viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-      </svg>
+      <img src="assets/icons/logo.jpeg" alt="M" />
     </div>
     <div class="message-content">
       ${listTitle ? `<strong>${listTitle}</strong><br>` : ''}
@@ -234,10 +225,7 @@ function addProductMessage(product) {
   div.className = 'message mone';
   div.innerHTML = `
     <div class="message-avatar">
-      <svg viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-      </svg>
+      <img src="assets/icons/logo.jpeg" alt="M" />
     </div>
     <div class="message-content">
       <div class="product-card" data-id="${product.id}">
@@ -264,10 +252,7 @@ function addProductsCarousel(products, title) {
   div.className = 'message mone';
   let html = `
     <div class="message-avatar">
-      <svg viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-      </svg>
+      <img src="assets/icons/logo.jpeg" alt="M" />
     </div>
     <div class="message-content">
       <p>${title}</p>
@@ -305,10 +290,7 @@ function showTyping() {
   div.id = 'typingIndicator';
   div.innerHTML = `
     <div class="message-avatar">
-      <svg viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#d4af37" stroke-width="1" fill="#1a1a1a"/>
-        <text x="14" y="19" text-anchor="middle" fill="#d4af37" font-size="13" font-family="Georgia, serif" font-weight="bold">$</text>
-      </svg>
+      <img src="assets/icons/logo.jpeg" alt="M" />
     </div>
     <div class="message-content">
       <div class="typing"><span></span><span></span><span></span></div>

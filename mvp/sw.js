@@ -9,7 +9,8 @@ const ASSETS = [
   '/mvp/css/style.css',
   '/mvp/js/app.js',
   '/mvp/js/products.js',
-  '/mvp/manifest.json'
+  '/mvp/manifest.json',
+  '/mvp/assets/icons/logo.jpeg'
 ];
 
 self.addEventListener('install', (event) => {
