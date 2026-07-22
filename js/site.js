@@ -279,7 +279,7 @@
   }
 
   function sendWelcome() {
-    var msg = getGreeting() + '! Seja bem-vindo a <strong>Money Adega & Tabacaria</strong> &#8212; seu ponto de encontro com o premium.<br><br>📢 <strong>Novidade!</strong> Agora tenho inteligência artificial para sugerir o combo perfeito pra voce!<br><br>💬 <strong>Pergunte:</strong><br>🍷 Qual whisky combina com churrasco?<br>💨 Qual essencia de narguile e mais doce?<br>🔥 Tenho R$ 100, qual combo voce sugere?<br><br>Ou digite o nome de um produto para ver precos e estoque!';
+    var msg = getGreeting() + '! Seja bem-vindo a <strong>Money Adega & Tabacaria</strong>.<br><br>Como posso ajudar? Pergunte sobre nossos produtos, precos, horarios ou delivery!';
     addChatMsg(msg, 'money');
   }
 
@@ -635,23 +635,6 @@
       }
     });
   });
-
-  // ============ STORE STATUS ============
-  (function() {
-    var el = document.getElementById('storeStatus');
-    if (!el) return;
-    var d = new Date();
-    var day = d.getDay();
-    var hour = d.getHours();
-    var open = (day >= 1 && day <= 6) && (hour >= 11 && hour < 22);
-    if (open) {
-      el.className = 'hero-store-status';
-      el.innerHTML = 'Aberto agora &mdash; Seg a S&aacute;b: 11h &agrave;s 22h';
-    } else {
-      el.className = 'hero-store-status closed';
-      el.innerHTML = 'Fechado agora &mdash; Hor&aacute;rio: Seg a S&aacute;b: 11h &agrave;s 22h';
-    }
-  })();
 
   // ============ INIT ============
   renderCategories();
