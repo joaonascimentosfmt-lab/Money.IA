@@ -426,16 +426,16 @@ function sendWelcomeInteractive() {
 
 function sendCategoryListInteractive() {
   const rowActions = [
-    { id: 'cat_whisky', title: 'Whiskies' },
-    { id: 'cat_vodka', title: 'Vodkas' },
-    { id: 'cat_gin', title: 'Gins' },
-    { id: 'cat_cerveja', title: 'Cervejas' },
-    { id: 'cat_vinho', title: 'Vinhos' },
-    { id: 'cat_espumante', title: 'Espumantes' },
-    { id: 'cat_pods', title: 'Pods e Vapes' },
-    { id: 'cat_energetico', title: 'Energeticos' },
-    { id: 'cat_tabacaria', title: 'Tabacaria' },
-    { id: 'cat_acessorios', title: 'Acessorios' }
+    { id: 'cat_whisky', title: 'Whisky' },
+    { id: 'cat_vodka', title: 'Vodka' },
+    { id: 'cat_gin', title: 'Gin' },
+    { id: 'cat_ervas', title: 'Ervas de Tereré' },
+    { id: 'cat_copos', title: 'Copos' },
+    { id: 'cat_garrafas', title: 'Garrafas' },
+    { id: 'cat_baldes', title: 'Baldes' },
+    { id: 'cat_gelo', title: 'Gelo Saborizado' },
+    { id: 'cat_maromba', title: 'Mansão Maromba' },
+    { id: 'cat_energetico', title: 'Energéticos' }
   ];
   addMessageWithList(
     'Escolha uma categoria para ver nossos produtos:',
@@ -460,7 +460,7 @@ function sendProductsListInteractive(products) {
 }
 
 function sendPromotionsInteractive() {
-  addMessage('Confira nossas promocoes especiais!\n\n🔥 Whisky acima de R$ 150: leve gelo com desconto\n🍺 Heineken: leve 6 e pague 5\n💨 Pods Ignite com 10% off');
+  addMessage('Confira nossas promocoes especiais!\n\n🔥 Whisky acima de R$ 150: leve gelo com desconto\n🍺 Heineken: leve 6 e pague 5');
   addMessageWithButtons(
     'Quer ver o cardapio completo?',
     [
@@ -472,10 +472,10 @@ function sendPromotionsInteractive() {
 
 function getCategoryLabel(category) {
   const labels = {
-    whisky: 'Whiskies', vodka: 'Vodkas', gin: 'Gins',
-    cerveja: 'Cervejas', vinho: 'Vinhos', espumante: 'Espumantes',
-    pods: 'Pods e Vapes', energetico: 'Energeticos',
-    tabacaria: 'Tabacaria', acessorios: 'Acessorios'
+    whisky: 'Whisky', vodka: 'Vodka', gin: 'Gin',
+    ervas: 'Ervas de Tereré', copos: 'Copos', garrafas: 'Garrafas',
+    baldes: 'Baldes', gelo: 'Gelo Saborizado',
+    maromba: 'Mansão Maromba', energetico: 'Energéticos'
   };
   return labels[category] || category;
 }
@@ -561,7 +561,7 @@ function getMoneyResponse(input) {
   }
 
   if (/combo|kit|pack/.test(q)) {
-    const products = [...getProductsByCategory('cerveja'), ...getProductsByCategory('whisky'), ...getProductsByCategory('energetico')].slice(0, 4);
+    const products = [...getProductsByCategory('baldes'), ...getProductsByCategory('whisky'), ...getProductsByCategory('energetico')].slice(0, 4);
     addProductsCarousel(products, 'Monte seu combo com esses produtos:');
     return 'Escolha os itens e monte seu combo personalizado!';
   }
@@ -570,7 +570,7 @@ function getMoneyResponse(input) {
     return 'Vou transferir para um atendente. Enquanto isso, voce pode falar conosco pelo WhatsApp: ' + STORE_INFO.phone;
   }
 
-  return 'Obrigado pela mensagem! Se tiver duvidas sobre produtos, precos, ou quiser fazer um pedido, e so me falar. Posso te ajudar com whisky, cerveja, vodkas, pods e muito mais!';
+  return 'Obrigado pela mensagem! Se tiver duvidas sobre produtos, precos, ou quiser fazer um pedido, e so me falar. Posso te ajudar com whisky, vodka, gin, energéticos e muito mais!';
 }
 
 // ============================================
