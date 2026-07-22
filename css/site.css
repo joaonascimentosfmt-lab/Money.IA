@@ -326,6 +326,41 @@ img { max-width: 100%; display: block; }
   animation: floatSmooth 5.5s ease-in-out 2s infinite;
 }
 
+/* ============ STORE STATUS ============ */
+.hero-store-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-xl);
+  background: rgba(40,167,69,0.1);
+  border: 1px solid rgba(40,167,69,0.3);
+  color: var(--success);
+}
+
+.hero-store-status.closed {
+  background: rgba(220,53,69,0.1);
+  border-color: rgba(220,53,69,0.3);
+  color: var(--danger);
+}
+
+.hero-store-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: blink 2s infinite;
+}
+
+.hero-store-status.closed::before {
+  background: var(--danger);
+  animation: none;
+}
+
 .hero-wave {
   position: absolute;
   bottom: 0;

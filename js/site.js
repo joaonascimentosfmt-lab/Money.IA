@@ -636,6 +636,23 @@
     });
   });
 
+  // ============ STORE STATUS ============
+  (function() {
+    var el = document.getElementById('storeStatus');
+    if (!el) return;
+    var d = new Date();
+    var day = d.getDay();
+    var hour = d.getHours();
+    var open = (day >= 1 && day <= 6) && (hour >= 11 && hour < 22);
+    if (open) {
+      el.className = 'hero-store-status';
+      el.innerHTML = 'Loja Aberta &mdash; Seg a S&aacute;b: 11h &agrave;s 22h';
+    } else {
+      el.className = 'hero-store-status closed';
+      el.innerHTML = 'Loja Fechada &mdash; Hor&aacute;rio: Seg a S&aacute;b: 11h &agrave;s 22h';
+    }
+  })();
+
   // ============ INIT ============
   renderCategories();
   renderFeaturedProducts();
