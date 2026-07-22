@@ -830,7 +830,7 @@ function renderCategories() {
   CATEGORIES.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = `category-tab${cat.id === state.selectedCategory ? ' active' : ''}`;
-    btn.innerHTML = `${getProductIcon(cat.id)}<span>${cat.label}</span>`;
+    btn.innerHTML = `<span>${cat.label}</span>`;
     btn.dataset.cat = cat.id;
     btn.addEventListener('click', () => {
       state.selectedCategory = cat.id;
