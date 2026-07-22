@@ -319,7 +319,6 @@ function showToast(msg) {
 // ============================================
 
 const RESPONSES = {
-  'ola': 'Ola! Como vai? Em que posso ajudar hoje?',
   'obrigado': 'Por nada! Se precisar de mais algo, e so chamar.',
   'obrigada': 'Por nada! Se precisar de mais algo, e so chamar.',
   'quero falar com alguem': 'Vou transferir para um atendente. Um momento, por favor.',
@@ -481,10 +480,14 @@ function getCategoryLabel(category) {
   return labels[category] || category;
 }
 
-function getMoneyResponse(input) {
-  const q = input.toLowerCase().trim();
+function normalize(text) {
+  return text.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
-  if (handleInteractiveAction(input)) return null;
+function getMoneyResponse(input) {
+  const q = normalize(input);
+
+  if (handleInteractiveAction(q)) return null;
 
   for (const [key, response] of Object.entries(RESPONSES)) {
     if (q.includes(key) || q === key) {
@@ -492,7 +495,7 @@ function getMoneyResponse(input) {
     }
   }
 
-  if (/^(oi|oie|oii|hey|e a[íi]|falou|fala|bom dia|boa tarde|boa noite)/.test(q)) {
+  if (/^(oi|oie|oii|hey|e a[íi]|falou|fala|ola|bom dia|boa tarde|boa noite)/.test(q)) {
     sendWelcomeInteractive();
     return null;
   }
