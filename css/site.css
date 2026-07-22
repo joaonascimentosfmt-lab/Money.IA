@@ -83,13 +83,13 @@ img { max-width: 100%; display: block; }
 .brand-logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
 }
 
 .logo-icon-wrapper {
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
@@ -106,9 +106,9 @@ img { max-width: 100%; display: block; }
 
 .logo-title {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   margin: 0;
   line-height: 1;
   background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #996515 100%);
@@ -120,11 +120,11 @@ img { max-width: 100%; display: block; }
 .logo-subtitle {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: #CCCCCC;
   margin-top: 2px;
   text-transform: uppercase;
@@ -133,7 +133,7 @@ img { max-width: 100%; display: block; }
 
 .logo-subtitle .dot {
   color: #D4AF37;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 
 .menu-toggle {
