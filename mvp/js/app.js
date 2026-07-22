@@ -452,7 +452,6 @@ function sendCategoryListInteractive() {
     { id: 'cat_garrafas', title: 'Garrafas Termicas' },
     { id: 'cat_gelo', title: 'Gelo Saborizado' },
     { id: 'cat_maromba', title: 'Mansao Maromba' },
-    { id: 'cat_pods', title: 'Pods' },
     { id: 'cat_tabacaria', title: 'Tabacaria' },
     { id: 'cat_acessorios', title: 'Acessorios' }
   ];
@@ -497,7 +496,7 @@ function getCategoryLabel(category) {
     narguile: 'Narguile', ervas: 'Ervas de Tereré',
     terere: 'Kits Tereré', copos: 'Copos Termicos',
     garrafas: 'Garrafas Termicas', gelo: 'Gelo Saborizado',
-    maromba: 'Mansao Maromba', pods: 'Pods Descartaveis',
+    maromba: 'Mansao Maromba',
     tabacaria: 'Tabacaria', acessorios: 'Acessorios'
   };
   return labels[category] || category;

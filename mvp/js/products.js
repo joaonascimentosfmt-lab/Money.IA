@@ -776,54 +776,6 @@ const PRODUCTS = [
     imageUrl: 'https://picsum.photos/seed/Drink%20Mans%C3%A3o%20Maromba%20P%C3%AAssego/400/400'
   },
   {
-    id: 'pod-001',
-    name: 'Pod Descartável Elf Bar 800',
-    category: 'pods',
-    brand: 'Elf Bar',
-    description: 'Pod descartável 800 puffs',
-    price: 35,
-    available: true,
-    tags: ['pod', 'elfbar', 'descartavel'],
-    inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Pod%20Descart%C3%A1vel%20Elf%20Bar%20800/400/400'
-  },
-  {
-    id: 'pod-002',
-    name: 'Pod Descartável Elf Bar 2000',
-    category: 'pods',
-    brand: 'Elf Bar',
-    description: 'Pod descartável 2000 puffs',
-    price: 55,
-    available: true,
-    tags: ['pod', 'elfbar', 'descartavel'],
-    inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Pod%20Descart%C3%A1vel%20Elf%20Bar%202000/400/400'
-  },
-  {
-    id: 'pod-003',
-    name: 'Pod Descartável Ignite V50',
-    category: 'pods',
-    brand: 'Ignite',
-    description: 'Pod descartável 50mg',
-    price: 45,
-    available: true,
-    tags: ['pod', 'ignite', 'descartavel'],
-    inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Pod%20Descart%C3%A1vel%20Ignite%20V50/400/400'
-  },
-  {
-    id: 'pod-004',
-    name: 'Pod Descartável Wizman',
-    category: 'pods',
-    brand: 'Wizman',
-    description: 'Pod descartável',
-    price: 45,
-    available: true,
-    tags: ['pod', 'wizman', 'descartavel'],
-    inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Pod%20Descart%C3%A1vel%20Wizman/400/400'
-  },
-  {
     id: 'tabac-001',
     name: 'Seda King Size',
     category: 'tabacaria',
@@ -904,7 +856,6 @@ const CATEGORIES = [
   { id: 'garrafas', label: 'Garrafas Térmicas' },
   { id: 'gelo', label: 'Gelo Saborizado' },
   { id: 'maromba', label: 'Mansão Maromba' },
-  { id: 'pods', label: 'Pods Descartáveis' },
   { id: 'tabacaria', label: 'Tabacaria' },
   { id: 'acessorios', label: 'Acessórios' },
 ];
@@ -964,7 +915,6 @@ function getProductIcon(category) {
     garrafas: 'thermal-bottle.svg',
     gelo: 'ice-cubes-fruit.svg',
     maromba: 'bodybuilder.svg',
-    pods: 'vape-device.svg',
     tabacaria: 'cigarette-pack.svg',
     acessorios: 'multi-tool.svg'
   };
