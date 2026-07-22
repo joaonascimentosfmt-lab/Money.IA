@@ -69,6 +69,19 @@
 - [x] Ajustes de performance e acessibilidade
 - [x] Criar documentacao (context.md e implementation.md)
 
+### Sprint 5.1: Correcao de Bugs e Melhorias (Pós-MVP)
+
+**Objetivo:** Corrigir bugs criticos identificados no MVP e melhorar robustez
+
+- [x] Corrigir `getMoneyResponse`: codigo morto apos `return` prematuro na linha 538 impedia busca de produtos, pedidos, carrinho e transferencia para atendente
+- [x] Remover duplicacao da logica de busca de produtos (ocorria em 2 blocos distintos)
+- [x] Consolidar fluxo completo de mensagens em unico fluxo linear sem dead code
+- [x] Melhorar Service Worker: cache-first com network fallback, skipWaiting, claim de clientes
+- [x] Adicionar novos assets ao cache do SW (icones adicionais)
+- [x] Melhorar responsividade mobile (splash, header, cart drawer em telas pequenas)
+- [x] Adicionar metadados ao manifest.json (categories, lang, screenshots)
+- [x] Padronizar textos dos botoes de produto ("Adicionar" em vez de "Adicionar ao pedido")
+
 ## Produto Final
 
 **Duracao estimada:** 8-12 semanas  

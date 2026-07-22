@@ -1103,6 +1103,10 @@ a { color: var(--gold); text-decoration: none; }
   .app { border-left: 1px solid var(--black-4); border-right: 1px solid var(--black-4); }
 }
 @media (max-width: 400px) {
-  .products-grid { grid-template-columns: 1fr; }
   .quick-btn { font-size: 12px; padding: 6px 12px; }
+  .message { max-width: 95%; }
+  .header { padding: 10px 12px; }
+  .cart-drawer { max-width: 100vw; }
+  .splash-title { font-size: 36px; letter-spacing: 6px; }
+  .splash-logo { width: 90px; height: 90px; }
 }

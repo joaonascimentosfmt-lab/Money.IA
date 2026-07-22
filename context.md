@@ -77,9 +77,11 @@ mvp/
 4. **Carrinho de Compras:** Adicao, remocao e ajuste de quantidades
 5. **Checkout:** Formulario com nome, telefone, endereco, pagamento e observacoes
 6. **Envio via WhatsApp:** Pedido formatado e enviado diretamente para o WhatsApp da loja
-7. **PWA:** Instalavel, responsivo, com suporte offline basico
+7. **PWA:** Instalavel, responsivo, com suporte offline basico (cache-first)
 8. **Navegacao:** Entre chat, produtos, pedidos e informacoes da loja
 9. **Informacoes da Loja:** Horario, endereco, telefone, Instagram, formas de pagamento, delivery
+10. **Configuracoes:** Tela de configuracao com URL da API, numero do WhatsApp e simulador de mensagens
+11. **Interacoes Avancadas:** Botoes de acao rapida, listas interativas, carrossel de produtos no chat
 
 ### Fluxo do Usuario
 

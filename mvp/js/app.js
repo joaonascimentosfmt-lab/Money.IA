@@ -237,7 +237,7 @@ function addProductMessage(product) {
           <div class="product-card-name">${product.name}</div>
           <div class="product-card-desc">${product.description}</div>
           <div class="product-card-price">R$ ${product.price.toFixed(2)}</div>
-          <button class="product-card-btn add-to-cart" data-id="${product.id}">Adicionar ao pedido</button>
+          <button class="product-card-btn add-to-cart" data-id="${product.id}">Adicionar</button>
         </div>
       </div>
     </div>`;
@@ -525,30 +525,12 @@ function getMoneyResponse(input) {
   const searchResults = searchProducts(q);
   if (searchResults.length === 1) {
     addProductMessage(searchResults[0]);
-    addMessageWithButtons('Quer adicionar ao carrinho?', [
-      { id: 'add_' + searchResults[0].id, title: 'Adicionar' },
-      { id: 'menu', title: 'Voltar ao menu' }
-    ]);
     return null;
   } else if (searchResults.length > 1) {
     sendProductsListInteractive(searchResults);
     return null;
   }
 
-  return 'Obrigado pela mensagem! Se tiver duvidas sobre produtos, precos, ou quiser fazer um pedido, e so me falar.';
-}
-
-  // Generic product search
-  const searchResults = searchProducts(q);
-  if (searchResults.length === 1) {
-    addProductMessage(searchResults[0]);
-    return `Encontrei! Esse e o ${searchResults[0].name}.`;
-  } else if (searchResults.length > 1) {
-    addProductsCarousel(searchResults, 'Encontrei esses produtos para voce:');
-    return null;
-  }
-
-  // Order related
   if (/pedido|comprar|quero comprar|quero fazer pedido/.test(q)) {
     if (state.cart.length === 0) {
       return 'Voce ainda nao tem itens no carrinho. De uma olhada no nosso catalogo e escolha seus produtos!';
@@ -577,12 +559,10 @@ function getMoneyResponse(input) {
     return 'Escolha os itens e monte seu combo personalizado!';
   }
 
-  // Transfer to human
   if (/transferir|atendente|humano|falar com alguem/.test(q)) {
-    return `Vou transferir para um atendente. Enquanto isso, voce pode falar conosco pelo WhatsApp: ${STORE_INFO.phone}`;
+    return 'Vou transferir para um atendente. Enquanto isso, voce pode falar conosco pelo WhatsApp: ' + STORE_INFO.phone;
   }
 
-  // Default fallback
   return 'Obrigado pela mensagem! Se tiver duvidas sobre produtos, precos, ou quiser fazer um pedido, e so me falar. Posso te ajudar com whisky, cerveja, vodkas, pods e muito mais!';
 }
 

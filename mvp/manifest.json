@@ -8,6 +8,8 @@
   "theme_color": "#0a0a0a",
   "orientation": "portrait",
   "scope": "/mvp/",
+  "categories": ["shopping", "food", "lifestyle"],
+  "lang": "pt-BR",
   "icons": [
     {
       "src": "assets/icons/logo.jpeg",
@@ -20,6 +22,14 @@
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/WhatsApp Image 2026-07-21 at 18.29.16.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
-  ]
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
 }
