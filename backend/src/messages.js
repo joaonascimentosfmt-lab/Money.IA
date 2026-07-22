@@ -264,7 +264,7 @@ async function sendDeliveryInfo(to) {
   await whatsapp.sendInteractiveButtons(
     to,
     'Delivery',
-    `🚚 Taxa de entrega: R$ ${info.deliveryFee.toFixed(2)}\n📦 Pedido minimo: R$ ${info.minOrder.toFixed(2)}\n⏱️ Tempo medio: ${info.avgTime}\n📍 Bairros atendidos: ${info.neighborhoods.join(', ')}`,
+    `🚚 Entregamos em: ${info.neighborhoods.join(', ')}\n📦 Pedido minimo: R$ ${info.minOrder.toFixed(2)}\n⏱️ Tempo medio: ${info.avgTime}\n📍 Consulte taxa de entrega no momento do pedido.`,
     null,
     [
       { id: 'menu', title: 'Voltar ao menu' },

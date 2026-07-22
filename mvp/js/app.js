@@ -361,7 +361,7 @@ function handleInteractiveAction(action) {
     return true;
   }
   if (q === 'delivery' || q === 'entrega' || q === 'taxa') {
-    addMessage(ICONS.truck + ' Taxa de entrega: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n' + ICONS.box + ' Pedido minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo medio: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Bairros: ' + STORE_INFO.neighborhoods.join(', '));
+    addMessage(ICONS.truck + ' Entregamos em: ' + STORE_INFO.neighborhoods.join(', ') + '\n' + ICONS.box + ' Pedido minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo medio: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Consulte taxa de entrega no momento do pedido.');
     addMessageWithButtons('Quer voltar ao menu?', [
       { id: 'menu', title: 'Voltar ao menu' },
       { id: 'comprar', title: 'Fazer pedido' }
@@ -544,7 +544,7 @@ function getMoneyResponse(input) {
   }
 
   if (/delivery|entrega|taxa|frete|bairro|entreg|receber/.test(q)) {
-    return ICONS.truck + ' Taxa: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n' + ICONS.box + ' Minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Bairros: ' + STORE_INFO.neighborhoods.join(', ');
+    return ICONS.truck + ' Entregamos em: ' + STORE_INFO.neighborhoods.join(', ') + '\n' + ICONS.box + ' Minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Consulte taxa de entrega no momento do pedido.';
   }
 
   if (/promocao|promo|oferta|desconto|barato|queima/.test(q)) {

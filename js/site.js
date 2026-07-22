@@ -241,10 +241,10 @@
   // ============ CHAT RESPONSES ============
   var STORE = {
     address: 'Av. Senador Filinto Muller - Marajoara, Varzea Grande - MT, CEP 78138-000',
-    hours: 'Seg a Sab: 11h as 22h | Dom: 10h as 22h',
+    hours: 'Seg a Sab: 11h as 22h | Dom: Fechado',
     phone: '(65) 99247-5643',
     payment: 'PIX, Dinheiro, Cartao de Debito e Credito',
-    delivery: 'Taxa: R$5,00 | Minimo: R$30,00 | Tempo: 45min',
+    delivery: 'Minimo: R$30,00 | Tempo: 45min (consulte taxa)',
     neighborhoods: ['Centro', 'CPA', 'Alicerce', 'Alvorada', 'Morada do Ouro', 'Quilombo', 'Santa Rosa']
   };
 
