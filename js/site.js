@@ -617,23 +617,7 @@
   function renderBrands() {
     var grid = document.getElementById('brandsGrid');
     if (!grid) return;
-    var brands = [
-      { name: 'Jack Daniels', icon: 'whisky' },
-      { name: 'Johnnie Walker', icon: 'whisky' },
-      { name: 'Heineken', icon: 'cerveja' },
-      { name: 'Absolut', icon: 'vodka' },
-      { name: 'Red Bull', icon: 'energetico' },
-      { name: 'Tanqueray', icon: 'gin' },
-      { name: 'Corona', icon: 'cerveja' },
-      { name: 'Mansao Maromba', icon: 'maromba' }
-    ];
-    grid.innerHTML = '';
-    brands.forEach(function(b) {
-      var div = document.createElement('div');
-      div.className = 'brand-item';
-      div.innerHTML = getProductIcon(b.icon) + '<span class="brand-item-name">' + b.name + '</span>';
-      grid.appendChild(div);
-    });
+    if (grid.children.length > 0) return;
   }
 
   function scrollToProducts(categoryId) {
