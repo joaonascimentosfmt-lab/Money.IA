@@ -1083,6 +1083,15 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 /* ============================================
+   INLINE ICONS
+   ============================================ */
+.message-content svg.inline-icon,
+.message-content svg[style*="vertical-align"] {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* ============================================
    ADMIN (minimal)
    ============================================ */
 .admin-link {
@@ -1100,13 +1109,59 @@ a { color: var(--gold); text-decoration: none; }
    RESPONSIVE
    ============================================ */
 @media (min-width: 768px) {
-  .app { border-left: 1px solid var(--black-4); border-right: 1px solid var(--black-4); }
+  .app {
+    border-left: 1px solid var(--black-4);
+    border-right: 1px solid var(--black-4);
+    box-shadow: var(--shadow-lg);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .product-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+  .product-item-img {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+  }
+  .product-item-add { width: 100%; }
+  .message { max-width: 80%; }
 }
+
+@media (min-width: 1024px) {
+  .app { max-width: 420px; margin: 0 auto; }
+  .cart-drawer { max-width: 380px; }
+}
+
 @media (max-width: 400px) {
   .quick-btn { font-size: 12px; padding: 6px 12px; }
+  .quick-btn svg { width: 14px; height: 14px; }
   .message { max-width: 95%; }
+  .message-content { font-size: 13px; padding: 8px 12px; }
   .header { padding: 10px 12px; }
+  .header-avatar img, .header-avatar svg { width: 30px; height: 30px; }
   .cart-drawer { max-width: 100vw; }
   .splash-title { font-size: 36px; letter-spacing: 6px; }
   .splash-logo { width: 90px; height: 90px; }
+  .product-item-name { font-size: 13px; }
+  .product-item-desc { font-size: 11px; }
+  .product-item-price { font-size: 13px; }
+  .product-item-img { width: 44px; height: 44px; min-width: 44px; }
+  .product-item-img svg { width: 24px; height: 24px; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .splash-logo { width: 60px; height: 60px; }
+  .splash-title { font-size: 28px; letter-spacing: 4px; }
+  .splash-subtitle { font-size: 12px; margin-bottom: 16px; }
+  .splash-loader { width: 140px; }
+  .quick-actions { padding: 4px 12px; }
+  .quick-btn { font-size: 11px; padding: 4px 10px; }
+  .chat-input-container { padding: 6px 12px 10px; }
+  .header { padding: 8px 12px; }
 }

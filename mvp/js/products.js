@@ -13,8 +13,11 @@ const PRODUCTS = [
     volume: '1L',
     price: 149.90,
     available: true,
+    oldPrice: 179.90,
+    badge: { type: 'off', value: 17 },
     tags: ['jack', 'jack daniels', 'tennessee'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Jack%20Daniels%20Old%20No.7/400/400',
   },
   {
     id: 'whisky-002',
@@ -26,7 +29,8 @@ const PRODUCTS = [
     price: 139.90,
     available: true,
     tags: ['jack', 'honey', 'jack honey'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Jack%20Daniels%20Honey/400/400',
   },
   {
     id: 'whisky-003',
@@ -38,7 +42,8 @@ const PRODUCTS = [
     price: 119.90,
     available: true,
     tags: ['red', 'red label', 'johnnie'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Red%20Label/400/400',
   },
   {
     id: 'whisky-004',
@@ -49,8 +54,10 @@ const PRODUCTS = [
     volume: '1L',
     price: 189.90,
     available: true,
+    badge: { type: 'top' },
     tags: ['black', 'black label', 'johnnie'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Black%20Label/400/400',
   },
   {
     id: 'whisky-005',
@@ -62,7 +69,8 @@ const PRODUCTS = [
     price: 179.90,
     available: true,
     tags: ['chivas', 'chivas 12'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Chivas%20Regal%2012/400/400',
   },
   {
     id: 'whisky-006',
@@ -74,7 +82,8 @@ const PRODUCTS = [
     price: 89.90,
     available: true,
     tags: ['ballantines'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Ballantines/400/400',
   },
   {
     id: 'whisky-007',
@@ -86,7 +95,8 @@ const PRODUCTS = [
     price: 129.90,
     available: true,
     tags: ['jameson', 'irlandes'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Jameson/400/400',
   },
   {
     id: 'whisky-008',
@@ -98,7 +108,8 @@ const PRODUCTS = [
     price: 159.90,
     available: true,
     tags: ['wild turkey', 'turkey', 'bourbon'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Wild%20Turkey%20101/400/400',
   },
 
   // VODKA
@@ -112,7 +123,8 @@ const PRODUCTS = [
     price: 89.90,
     available: true,
     tags: ['absolut'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Absolut/400/400',
   },
   {
     id: 'vodka-002',
@@ -124,7 +136,8 @@ const PRODUCTS = [
     price: 59.90,
     available: true,
     tags: ['smirnoff'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Smirnoff/400/400',
   },
   {
     id: 'vodka-003',
@@ -135,8 +148,10 @@ const PRODUCTS = [
     volume: '1L',
     price: 199.90,
     available: true,
+    badge: { type: 'top' },
     tags: ['grey goose', 'gray goose'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Grey%20Goose/400/400',
   },
   {
     id: 'vodka-004',
@@ -148,7 +163,8 @@ const PRODUCTS = [
     price: 159.90,
     available: true,
     tags: ['ciroc'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Ciroc/400/400',
   },
 
   // GIN
@@ -161,8 +177,11 @@ const PRODUCTS = [
     volume: '1L',
     price: 49.90,
     available: true,
+    oldPrice: 59.90,
+    badge: { type: 'off', value: 17 },
     tags: ['gordons', 'gordon'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Gordon%27s/400/400',
   },
   {
     id: 'gin-002',
@@ -174,7 +193,8 @@ const PRODUCTS = [
     price: 99.90,
     available: true,
     tags: ['tanqueray'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Tanqueray/400/400',
   },
   {
     id: 'gin-003',
@@ -186,7 +206,8 @@ const PRODUCTS = [
     price: 129.90,
     available: true,
     tags: ['bombay', 'sapphire'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Bombay%20Sapphire/400/400',
   },
   {
     id: 'gin-004',
@@ -198,7 +219,8 @@ const PRODUCTS = [
     price: 69.90,
     available: true,
     tags: ['beefeater'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Beefeater/400/400',
   },
 
   // BALDES
@@ -211,8 +233,11 @@ const PRODUCTS = [
     volume: '350ml',
     price: 6.90,
     available: true,
+    oldPrice: 8.90,
+    badge: { type: 'off', value: 22 },
     tags: ['heineken', 'hineken'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Heineken/400/400',
   },
   {
     id: 'cerveja-002',
@@ -224,7 +249,8 @@ const PRODUCTS = [
     price: 9.90,
     available: true,
     tags: ['heineken', 'long neck'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Heineken%20Long%20Neck/400/400',
   },
   {
     id: 'cerveja-003',
@@ -236,7 +262,8 @@ const PRODUCTS = [
     price: 4.50,
     available: true,
     tags: ['skol'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Skol%20Lata/400/400',
   },
   {
     id: 'cerveja-004',
@@ -248,7 +275,8 @@ const PRODUCTS = [
     price: 4.50,
     available: true,
     tags: ['brahma'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Brahma%20Lata/400/400',
   },
   {
     id: 'cerveja-005',
@@ -260,7 +288,8 @@ const PRODUCTS = [
     price: 5.50,
     available: true,
     tags: ['amstel'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Amstel%20Lata/400/400',
   },
   {
     id: 'cerveja-006',
@@ -272,7 +301,8 @@ const PRODUCTS = [
     price: 12.90,
     available: true,
     tags: ['corona'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Corona/400/400',
   },
   {
     id: 'cerveja-007',
@@ -284,7 +314,8 @@ const PRODUCTS = [
     price: 10.90,
     available: true,
     tags: ['stella', 'artois'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Stella%20Artois/400/400',
   },
   {
     id: 'cerveja-008',
@@ -296,7 +327,8 @@ const PRODUCTS = [
     price: 5.90,
     available: true,
     tags: ['bud', 'budweiser'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Budweiser/400/400',
   },
 
   // ENERGETICO
@@ -310,7 +342,8 @@ const PRODUCTS = [
     price: 12.90,
     available: true,
     tags: ['red bull', 'energetico'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Red%20Bull/400/400',
   },
   {
     id: 'energetico-002',
@@ -322,7 +355,8 @@ const PRODUCTS = [
     price: 14.90,
     available: true,
     tags: ['monster'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Monster%20Energy/400/400',
   },
   {
     id: 'energetico-003',
@@ -334,7 +368,8 @@ const PRODUCTS = [
     price: 12.90,
     available: true,
     tags: ['red bull', 'sugar free', 'zero'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Red%20Bull%20Sugar%20Free/400/400',
   },
 
   // GELO SABORIZADO
@@ -348,7 +383,8 @@ const PRODUCTS = [
     price: 8.90,
     available: true,
     tags: ['gelo'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Gelo%202kg/400/400',
   },
   {
     id: 'acessorios-002',
@@ -360,7 +396,8 @@ const PRODUCTS = [
     price: 5.90,
     available: true,
     tags: ['copo', 'caipirinha', 'whisky'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Copo%20Caipirinha%20300ml/400/400',
   },
   {
     id: 'acessorios-003',
@@ -372,7 +409,8 @@ const PRODUCTS = [
     price: 6.90,
     available: true,
     tags: ['copo', 'long drink'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Copo%20Long%20Drink/400/400',
   },
   {
     id: 'acessorios-004',
@@ -384,7 +422,8 @@ const PRODUCTS = [
     price: 3.00,
     available: true,
     tags: ['agua', 'agua mineral'],
-    inChat: true
+    inChat: true,
+    imageUrl: 'https://picsum.photos/seed/Agua%20Mineral%20500ml/400/400',
   },
 
 ];

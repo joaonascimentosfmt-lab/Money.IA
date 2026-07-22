@@ -22,6 +22,18 @@ const CONFIG = {
   whatsappNumber: state.whatsappNumber
 };
 
+const ICONS = {
+  map: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  card: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>',
+  truck: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M5 17h4M5 12h14M5 7h10"/><path d="M17 18l2-2 2 2"/><path d="M19 16v4"/></svg>',
+  box: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M12 22V12"/><path d="M3.3 7L12 12l8.7-5"/></svg>',
+  timer: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+  fire: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M12 22c4 0 7-3 7-7 0-4-3-9-7-11-4 2-7 7-7 11 0 4 3 7 7 7z"/><path d="M12 17c1.5 0 3-1.5 3-3 0-2-1.5-4-3-5-1.5 1-3 3-3 5 0 1.5 1.5 3 3 3z"/></svg>',
+  beer: '<svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12v6"/><path d="M13 12v6"/><path d="M5 7v2a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3V7"/><path d="M5 7h10"/></svg>'
+};
+
 // ============================================
 // DOM REFS
 // ============================================
@@ -345,11 +357,11 @@ function handleInteractiveAction(action) {
     return true;
   }
   if (q === 'horario' || q === 'endereco' || q === 'info') {
-    addMessage('📍 ' + STORE_INFO.address + '\n\n🕐 ' + STORE_INFO.hours + '\n\n📞 ' + STORE_INFO.phone + '\n\n💳 Aceitamos: ' + STORE_INFO.paymentMethods);
+    addMessage(ICONS.map + STORE_INFO.address + '\n\n' + ICONS.clock + STORE_INFO.hours + '\n\n' + ICONS.phone + STORE_INFO.phone + '\n\n' + ICONS.card + ' Aceitamos: ' + STORE_INFO.paymentMethods);
     return true;
   }
   if (q === 'delivery' || q === 'entrega' || q === 'taxa') {
-    addMessage('🚚 Taxa de entrega: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n📦 Pedido minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n⏱️ Tempo medio: ' + STORE_INFO.avgTime + '\n📍 Bairros: ' + STORE_INFO.neighborhoods.join(', '));
+    addMessage(ICONS.truck + ' Taxa de entrega: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n' + ICONS.box + ' Pedido minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo medio: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Bairros: ' + STORE_INFO.neighborhoods.join(', '));
     addMessageWithButtons('Quer voltar ao menu?', [
       { id: 'menu', title: 'Voltar ao menu' },
       { id: 'comprar', title: 'Fazer pedido' }
@@ -426,16 +438,18 @@ function sendWelcomeInteractive() {
 
 function sendCategoryListInteractive() {
   const rowActions = [
+    { id: 'cat_nargas', title: 'Nargas' },
     { id: 'cat_whisky', title: 'Whisky' },
     { id: 'cat_vodka', title: 'Vodka' },
     { id: 'cat_gin', title: 'Gin' },
     { id: 'cat_ervas', title: 'Ervas de Tereré' },
-    { id: 'cat_copos', title: 'Copos' },
-    { id: 'cat_garrafas', title: 'Garrafas' },
+    { id: 'cat_bombas', title: 'Bombas de Tereré' },
+    { id: 'cat_garrafas', title: 'Garrafas Termicas' },
+    { id: 'cat_copos', title: 'Copos Termicos' },
     { id: 'cat_baldes', title: 'Baldes' },
     { id: 'cat_gelo', title: 'Gelo Saborizado' },
-    { id: 'cat_maromba', title: 'Mansão Maromba' },
-    { id: 'cat_energetico', title: 'Energéticos' }
+    { id: 'cat_maromba', title: 'Mansao Maromba' },
+    { id: 'cat_energetico', title: 'Energeticos' }
   ];
   addMessageWithList(
     'Escolha uma categoria para ver nossos produtos:',
@@ -460,7 +474,7 @@ function sendProductsListInteractive(products) {
 }
 
 function sendPromotionsInteractive() {
-  addMessage('Confira nossas promocoes especiais!\n\n🔥 Whisky acima de R$ 150: leve gelo com desconto\n🍺 Heineken: leve 6 e pague 5');
+  addMessage('Confira nossas promocoes especiais!\n\n' + ICONS.fire + ' Whisky acima de R$ 150: leve gelo com desconto\n' + ICONS.beer + ' Heineken: leve 6 e pague 5');
   addMessageWithButtons(
     'Quer ver o cardapio completo?',
     [
@@ -473,9 +487,11 @@ function sendPromotionsInteractive() {
 function getCategoryLabel(category) {
   const labels = {
     whisky: 'Whisky', vodka: 'Vodka', gin: 'Gin',
-    ervas: 'Ervas de Tereré', copos: 'Copos', garrafas: 'Garrafas',
-    baldes: 'Baldes', gelo: 'Gelo Saborizado',
-    maromba: 'Mansão Maromba', energetico: 'Energéticos'
+    nargas: 'Nargas', ervas: 'Ervas de Tereré',
+    bombas: 'Bombas de Tereré', copos: 'Copos Termicos',
+    garrafas: 'Garrafas Termicas', baldes: 'Baldes',
+    gelo: 'Gelo Saborizado', maromba: 'Mansao Maromba',
+    energetico: 'Energeticos'
   };
   return labels[category] || category;
 }
@@ -521,7 +537,7 @@ function getMoneyResponse(input) {
   }
 
   if (/delivery|entrega|taxa|frete|bairro|entreg|receber/.test(q)) {
-    return '🚚 Taxa: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\nMinimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\nTempo: ' + STORE_INFO.avgTime + '\nBairros: ' + STORE_INFO.neighborhoods.join(', ');
+    return ICONS.truck + ' Taxa: R$ ' + STORE_INFO.deliveryFee.toFixed(2) + '\n' + ICONS.box + ' Minimo: R$ ' + STORE_INFO.minOrder.toFixed(2) + '\n' + ICONS.timer + ' Tempo: ' + STORE_INFO.avgTime + '\n' + ICONS.map + ' Bairros: ' + STORE_INFO.neighborhoods.join(', ');
   }
 
   if (/promocao|promo|oferta|desconto|barato|queima/.test(q)) {
@@ -557,6 +573,14 @@ function getMoneyResponse(input) {
 
   if (/menu|cardapio|catalogo|produtos|mostrar|ver/.test(q)) {
     switchView('products');
+    return null;
+  }
+
+  if (/maromba|drink/.test(q)) {
+    const products = getProductsByCategory('maromba');
+    if (products.length) {
+      sendProductsListInteractive(products);
+    }
     return null;
   }
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Money Adega & Tabacaria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container admin-header-inner">
+      <a href="../index.html" class="admin-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Voltar ao Site
+      </a>
+      <h1 class="admin-logo">MONEY <span>Admin</span></h1>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+      <div class="admin-config">
+        <h2>Configuracao da API de Imagens</h2>
+        <p class="admin-config-desc">Para buscar imagens automaticamente, configure sua chave da Unsplash API. <a href="https://unsplash.com/developers" target="_blank">Obter chave gratuita</a></p>
+        <div class="admin-config-form">
+          <input type="text" id="apiKeyInput" placeholder="Insira sua Unsplash Access Key..." autocomplete="off">
+          <button class="btn-primary" id="saveApiKeyBtn">Salvar</button>
+        </div>
+        <span class="admin-config-status" id="apiKeyStatus"></span>
+      </div>
+
+      <div class="admin-toolbar">
+        <h2>Produtos Cadastrados</h2>
+        <div class="admin-toolbar-actions">
+          <button class="btn-outline" id="batchSearchBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            Buscar Imagens em Lote
+          </button>
+          <button class="btn-primary" id="addProductBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+            Novo Produto
+          </button>
+        </div>
+      </div>
+      <div class="admin-batch-progress hidden" id="batchProgress">
+        <div class="admin-batch-bar">
+          <div class="admin-batch-bar-fill" id="batchBarFill"></div>
+        </div>
+        <p class="admin-batch-status" id="batchStatus">Buscando imagens...</p>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="productsTable">
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Preco</th>
+              <th>Tipo</th>
+              <th>Acoes</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody"></tbody>
+        </table>
+      </div>
+      <p class="admin-empty" id="adminEmpty">Nenhum produto personalizado ainda. Clique em "Novo Produto" para cadastrar.</p>
+    </div>
+  </main>
+
+  <!-- PRODUCT FORM MODAL -->
+  <div class="admin-modal-overlay hidden" id="productModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="modalTitle">Novo Produto</h3>
+        <button class="admin-modal-close" id="modalClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label for="fieldName">Nome do Produto</label>
+          <input type="text" id="fieldName" placeholder="Ex: Jack Daniels Old No.7" autocomplete="off">
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label for="fieldCategory">Categoria</label>
+            <select id="fieldCategory"></select>
+          </div>
+          <div class="admin-form-group">
+            <label for="fieldBrand">Marca</label>
+            <input type="text" id="fieldBrand" placeholder="Ex: Jack Daniels" autocomplete="off">
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label for="fieldDesc">Descricao</label>
+          <input type="text" id="fieldDesc" placeholder="Ex: Whisky Tennessee 1L" autocomplete="off">
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label for="fieldVolume">Volume</label>
+            <input type="text" id="fieldVolume" placeholder="Ex: 1L" autocomplete="off">
+          </div>
+          <div class="admin-form-group">
+            <label for="fieldPrice">Preco (R$)</label>
+            <input type="number" id="fieldPrice" placeholder="0.00" step="0.01" min="0">
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label>Imagem do Produto</label>
+          <div class="admin-image-area" id="imageArea">
+            <div class="admin-image-preview" id="imagePreview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <p>A imagem sera buscada automaticamente<br>ao preencher o nome do produto</p>
+            </div>
+            <div class="admin-image-result hidden" id="imageResult">
+              <img id="imageResultImg" alt="Preview">
+              <button class="admin-image-refresh" id="imageRefreshBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Buscar outra imagem
+              </button>
+            </div>
+            <div class="admin-image-loading hidden" id="imageLoading">
+              <div class="admin-spinner"></div>
+              <p>Buscando imagem...</p>
+            </div>
+          </div>
+          <input type="hidden" id="fieldImageUrl">
+        </div>
+        <div class="admin-form-group">
+          <label for="fieldTags">Tags (separadas por virgula)</label>
+          <input type="text" id="fieldTags" placeholder="Ex: jack, tennessee, whiskey" autocomplete="off">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-outline" id="modalCancel">Cancelar</button>
+        <button class="btn-primary" id="modalSave">Salvar Produto</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-modal-overlay hidden" id="confirmModal">
+    <div class="admin-modal admin-modal-sm">
+      <div class="admin-modal-header">
+        <h3>Confirmar Exclusao</h3>
+      </div>
+      <div class="admin-modal-body">
+        <p>Tem certeza que deseja excluir este produto?</p>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-outline" id="confirmNo">Cancelar</button>
+        <button class="btn-primary" id="confirmYes">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../mvp/js/products.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
