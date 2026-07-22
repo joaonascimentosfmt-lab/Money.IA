@@ -336,7 +336,7 @@ function handleInteractiveAction(action) {
     sendWelcomeInteractive();
     return true;
   }
-  if (q === 'ver_cardapio' || q === 'produtos' || q === 'catalogo') {
+  if (q === 'ver_cardapio' || q === 'cardapio' || q === 'produtos' || q === 'catalogo') {
     sendCategoryListInteractive();
     return true;
   }
@@ -415,7 +415,7 @@ function sendWelcomeInteractive() {
   addMessageWithButtons(
     getGreeting() + '! Seja muito bem-vindo a Money Adega & Tabacaria.\n\nComo posso ajudar hoje?',
     [
-      { id: 'ver_cardapio', title: 'Ver cardapio' },
+      { id: 'ver_cardapio', title: 'Cardapio' },
       { id: 'promocoes', title: 'Promocoes' },
       { id: 'falar_atendente', title: 'Falar com atendente' }
     ],
@@ -440,7 +440,7 @@ function sendCategoryListInteractive() {
   addMessageWithList(
     'Escolha uma categoria para ver nossos produtos:',
     'Nosso Cardapio',
-    'Ver categorias',
+    'Ver cardapio',
     rowActions
   );
 }
@@ -464,7 +464,7 @@ function sendPromotionsInteractive() {
   addMessageWithButtons(
     'Quer ver o cardapio completo?',
     [
-      { id: 'ver_cardapio', title: 'Ver cardapio' },
+      { id: 'ver_cardapio', title: 'Cardapio' },
       { id: 'menu', title: 'Voltar ao menu' }
     ]
   );
