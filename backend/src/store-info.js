@@ -3,7 +3,7 @@ function getStoreInfo() {
     name: 'Money Adega & Tabacaria',
     slogan: 'Seu role comeca aqui.',
     hours: 'Seg a Sab: 11h as 22h | Dom: 10h as 22h',
-    address: 'Rua Exemplo, 123 - Centro, Cuiaba - MT',
+    address: 'Av. Senador Filinto Muller - Marajoara, Varzea Grande - MT, CEP 78138-000',
     phone: '(65) 99247-5643',
     whatsapp: '5565992475643',
     instagram: '@moneyadega',

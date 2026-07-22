@@ -240,7 +240,7 @@
 
   // ============ CHAT RESPONSES ============
   var STORE = {
-    address: 'Rua Exemplo, 123 - Centro, Cuiaba - MT',
+    address: 'Av. Senador Filinto Muller - Marajoara, Varzea Grande - MT, CEP 78138-000',
     hours: 'Seg a Sab: 11h as 22h | Dom: 10h as 22h',
     phone: '(65) 99247-5643',
     payment: 'PIX, Dinheiro, Cartao de Debito e Credito',
