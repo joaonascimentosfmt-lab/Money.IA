@@ -949,6 +949,7 @@ function searchProducts(query) {
 
 function getProductIcon(category) {
   const files = {
+    all: 'all.svg',
     whisky: 'whisky-bottle.svg',
     vodka: 'vodka-bottle.svg',
     gin: 'gin-bottle.svg',

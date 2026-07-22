@@ -682,11 +682,23 @@ a { color: var(--gold); text-decoration: none; }
   font-weight: 500;
   white-space: nowrap;
   transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.category-tab .category-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 .category-tab:hover, .category-tab.active {
   background: var(--gold);
   color: var(--black);
   border-color: var(--gold);
+}
+.category-tab:hover .category-icon,
+.category-tab.active .category-icon {
+  filter: brightness(0);
 }
 
 .products-grid {
