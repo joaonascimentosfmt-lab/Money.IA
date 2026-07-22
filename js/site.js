@@ -505,26 +505,58 @@
     }
   });
 
+  // ============ MACRO GROUP FILTER ============
+  var MACRO_GROUPS = {
+    adega: ['whisky','vodka','gin','cerveja','energetico','vinho','espumante','gelo','maromba'],
+    terere: ['ervas','terere','copos','garrafas'],
+    tabacaria: ['narguile','tabacaria','acessorios']
+  };
+
+  var activeMacro = 'all';
+
+  function getFilteredCategories() {
+    if (activeMacro === 'all') {
+      return CATEGORIES.filter(function(c) { return c.id !== 'all'; });
+    }
+    var ids = MACRO_GROUPS[activeMacro] || [];
+    return CATEGORIES.filter(function(c) { return ids.indexOf(c.id) !== -1; });
+  }
+
   // ============ RENDER CATEGORIES ============
   function renderCategories() {
     var grid = document.getElementById('categoriesGrid');
     grid.innerHTML = '';
 
-    CATEGORIES.forEach(function(cat) {
+    getFilteredCategories().forEach(function(cat) {
       if (cat.id === 'all') return;
       var count = getProductsByCategory(cat.id).length;
+      if (count === 0) return;
       var div = document.createElement('div');
       div.className = 'category-card';
       div.innerHTML =
         '<div class="category-card-icon">' + getProductIcon(cat.id) + '</div>' +
         '<div class="category-card-name">' + cat.label + '</div>' +
-        '<div class="category-card-count">' + count + ' produtos</div>';
+        '<div class="category-card-count">' + count + ' produto' + (count !== 1 ? 's' : '') + '</div>';
       div.addEventListener('click', function() {
         scrollToProducts(cat.id);
       });
       grid.appendChild(div);
     });
   }
+
+  // ============ MACRO TABS ============
+  (function() {
+    var container = document.getElementById('macroTabs');
+    if (!container) return;
+    container.addEventListener('click', function(e) {
+      var btn = e.target.closest('.macro-tab');
+      if (!btn) return;
+      container.querySelectorAll('.macro-tab').forEach(function(t) { t.classList.remove('active'); });
+      btn.classList.add('active');
+      activeMacro = btn.getAttribute('data-group');
+      renderCategories();
+    });
+  })();
 
   // ============ RENDER FEATURED PRODUCTS ============
   function renderFeaturedProducts() {
