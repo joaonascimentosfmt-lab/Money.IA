@@ -969,7 +969,8 @@ function getProductIcon(category) {
     acessorios: 'multi-tool.svg'
   };
   const file = files[category] || 'whisky-bottle.svg';
-  return `<img src="assets/icons/${file}" alt="${category}" class="category-icon">`;
+  const base = window.location.pathname.includes('/mvp/') ? '' : 'mvp/';
+  return `<img src="${base}assets/icons/${file}" alt="${category}" class="category-icon">`;
 }
 
 function getCustomProducts() {
