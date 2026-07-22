@@ -17,7 +17,7 @@ const PRODUCTS = [
     available: true,
     tags: ['jack', 'jack daniels', 'tennessee'],
     inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Jack%20Daniels%20Old%20No.7/400/400'
+    imageUrl: 'assets/products/jack-daniels-old-no7.jpg'
   },
   {
     id: 'whisky-002',
@@ -30,7 +30,7 @@ const PRODUCTS = [
     available: true,
     tags: ['jack', 'honey', 'jack honey'],
     inChat: true,
-    imageUrl: 'https://picsum.photos/seed/Jack%20Daniels%20Honey/400/400'
+    imageUrl: 'assets/products/jack-daniels-old-no7.jpg'
   },
   {
     id: 'whisky-003',
