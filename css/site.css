@@ -315,15 +315,15 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-icon-1 {
-  animation: floatSmooth 4s ease-in-out infinite;
+  animation: floatSmooth 5s ease-in-out infinite;
 }
 
 .hero-icon-2 {
-  animation: floatSmooth 5.2s ease-in-out 0.8s infinite;
+  animation: floatSmooth 6s ease-in-out 1s infinite;
 }
 
 .hero-icon-3 {
-  animation: floatSmooth 4.5s ease-in-out 1.5s infinite;
+  animation: floatSmooth 5.5s ease-in-out 2s infinite;
 }
 
 .hero-wave {
@@ -1417,6 +1417,194 @@ img { max-width: 100%; display: block; }
   stroke-width: 1.5;
 }
 
+/* ============ SOCIAL PROOF ============ */
+.social-proof-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.proof-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.proof-metric {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.proof-number {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.proof-label {
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.proof-stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.proof-stars svg {
+  width: 18px;
+  height: 18px;
+}
+
+.proof-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: var(--black-3);
+  border: 1px solid var(--black-4);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition);
+}
+
+.testimonial-card:hover {
+  border-color: var(--gold-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(212,175,55,0.08);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.testimonial-stars svg {
+  width: 16px;
+  height: 16px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  color: var(--white-2);
+  line-height: 1.6;
+  font-style: italic;
+  flex: 1;
+}
+
+.testimonial-author {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ============ FAQ ============ */
+.faq-grid {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq-item {
+  background: var(--black-3);
+  border: 1px solid var(--black-4);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border var(--transition);
+}
+
+.faq-item:hover {
+  border-color: var(--gold-dark);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+.faq-arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--gray);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+}
+
+.faq-answer p {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ============ BUTTON GLOW ============ */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.btn-glow:hover::after {
+  opacity: 1;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 900px) {
   .footer-inner {
@@ -1486,6 +1674,10 @@ img { max-width: 100%; display: block; }
   .section-title { font-size: 30px; }
 
   .about-content { grid-template-columns: 1fr; }
+
+  .proof-testimonials { grid-template-columns: 1fr; }
+  .proof-number { font-size: 36px; }
+  .proof-metrics { gap: 32px; }
 
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
