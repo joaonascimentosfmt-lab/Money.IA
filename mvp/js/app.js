@@ -438,18 +438,23 @@ function sendWelcomeInteractive() {
 
 function sendCategoryListInteractive() {
   const rowActions = [
-    { id: 'cat_nargas', title: 'Nargas' },
     { id: 'cat_whisky', title: 'Whisky' },
     { id: 'cat_vodka', title: 'Vodka' },
     { id: 'cat_gin', title: 'Gin' },
-    { id: 'cat_ervas', title: 'Ervas de Tereré' },
-    { id: 'cat_bombas', title: 'Bombas de Tereré' },
-    { id: 'cat_garrafas', title: 'Garrafas Termicas' },
+    { id: 'cat_cerveja', title: 'Cervejas' },
+    { id: 'cat_energetico', title: 'Energeticos' },
+    { id: 'cat_vinho', title: 'Vinhos' },
+    { id: 'cat_espumante', title: 'Espumantes' },
+    { id: 'cat_narguile', title: 'Narguile' },
+    { id: 'cat_ervas', title: 'Ervas' },
+    { id: 'cat_terere', title: 'Kits Terere' },
     { id: 'cat_copos', title: 'Copos Termicos' },
-    { id: 'cat_baldes', title: 'Baldes' },
+    { id: 'cat_garrafas', title: 'Garrafas Termicas' },
     { id: 'cat_gelo', title: 'Gelo Saborizado' },
     { id: 'cat_maromba', title: 'Mansao Maromba' },
-    { id: 'cat_energetico', title: 'Energeticos' }
+    { id: 'cat_pods', title: 'Pods' },
+    { id: 'cat_tabacaria', title: 'Tabacaria' },
+    { id: 'cat_acessorios', title: 'Acessorios' }
   ];
   addMessageWithList(
     'Escolha uma categoria para ver nossos produtos:',
@@ -487,11 +492,13 @@ function sendPromotionsInteractive() {
 function getCategoryLabel(category) {
   const labels = {
     whisky: 'Whisky', vodka: 'Vodka', gin: 'Gin',
-    nargas: 'Nargas', ervas: 'Ervas de Tereré',
-    bombas: 'Bombas de Tereré', copos: 'Copos Termicos',
-    garrafas: 'Garrafas Termicas', baldes: 'Baldes',
-    gelo: 'Gelo Saborizado', maromba: 'Mansao Maromba',
-    energetico: 'Energeticos'
+    cerveja: 'Cervejas', energetico: 'Energeticos',
+    vinho: 'Vinhos', espumante: 'Espumantes',
+    narguile: 'Narguile', ervas: 'Ervas de Tereré',
+    terere: 'Kits Tereré', copos: 'Copos Termicos',
+    garrafas: 'Garrafas Termicas', gelo: 'Gelo Saborizado',
+    maromba: 'Mansao Maromba', pods: 'Pods Descartaveis',
+    tabacaria: 'Tabacaria', acessorios: 'Acessorios'
   };
   return labels[category] || category;
 }
@@ -585,7 +592,7 @@ function getMoneyResponse(input) {
   }
 
   if (/combo|kit|pack/.test(q)) {
-    const products = [...getProductsByCategory('baldes'), ...getProductsByCategory('whisky'), ...getProductsByCategory('energetico')].slice(0, 4);
+    const products = [...getProductsByCategory('cerveja'), ...getProductsByCategory('whisky'), ...getProductsByCategory('energetico')].slice(0, 4);
     addProductsCarousel(products, 'Monte seu combo com esses produtos:');
     return 'Escolha os itens e monte seu combo personalizado!';
   }

@@ -336,7 +336,7 @@
     }
 
     if (/narguile|narg|essencia|carvao/.test(q)) {
-      return getCategoryResponse('nargas');
+      return getCategoryResponse('narguile');
     }
 
     if (/whisky|whiskey|jack|label|chivas|jameson|ballantines/.test(q)) {
@@ -356,7 +356,7 @@
     }
 
     if (/bomba/.test(q)) {
-      return getCategoryResponse('bombas');
+      return getCategoryResponse('terere');
     }
 
     if (/garrafa|termica/.test(q)) {
@@ -376,7 +376,7 @@
     }
 
     if (/cerveja|balde|heineken|skol|brahma|amstel|corona/.test(q)) {
-      return getCategoryResponse('baldes');
+      return getCategoryResponse('cerveja');
     }
 
     if (/gelo/.test(q)) {
@@ -588,11 +588,11 @@
     var brands = [
       { name: 'Jack Daniels', icon: 'whisky' },
       { name: 'Johnnie Walker', icon: 'whisky' },
-      { name: 'Heineken', icon: 'baldes' },
+      { name: 'Heineken', icon: 'cerveja' },
       { name: 'Absolut', icon: 'vodka' },
       { name: 'Red Bull', icon: 'energetico' },
       { name: 'Tanqueray', icon: 'gin' },
-      { name: 'Corona', icon: 'baldes' },
+      { name: 'Corona', icon: 'cerveja' },
       { name: 'Mansao Maromba', icon: 'maromba' }
     ];
     grid.innerHTML = '';
