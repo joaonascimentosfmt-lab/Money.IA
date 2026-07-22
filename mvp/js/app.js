@@ -320,9 +320,6 @@ function showToast(msg) {
 
 const RESPONSES = {
   'ola': 'Ola! Como vai? Em que posso ajudar hoje?',
-  'bom dia': 'Bom dia! Como posso te ajudar hoje?',
-  'boa tarde': 'Boa tarde! Esta procurando algo especial hoje?',
-  'boa noite': 'Boa noite! Vamos encontrar o que voce precisa?',
   'obrigado': 'Por nada! Se precisar de mais algo, e so chamar.',
   'obrigada': 'Por nada! Se precisar de mais algo, e so chamar.',
   'quero falar com alguem': 'Vou transferir para um atendente. Um momento, por favor.',
@@ -408,9 +405,16 @@ function handleInteractiveAction(action) {
   return false;
 }
 
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Bom dia';
+  if (h < 18) return 'Boa tarde';
+  return 'Boa noite';
+}
+
 function sendWelcomeInteractive() {
   addMessageWithButtons(
-    'Ola! Eu sou a Money, sua assistente virtual.\n\nComo posso ajudar hoje?',
+    getGreeting() + '! Seja muito bem-vindo a Money Adega & Tabacaria.\n\nComo posso ajudar hoje?',
     [
       { id: 'ver_cardapio', title: 'Ver cardapio' },
       { id: 'promocoes', title: 'Promocoes' },
@@ -488,7 +492,7 @@ function getMoneyResponse(input) {
     }
   }
 
-  if (/^(oi|oie|oii|hey|e aí|eai|falou|fala)/.test(q)) {
+  if (/^(oi|oie|oii|hey|e a[íi]|falou|fala|bom dia|boa tarde|boa noite)/.test(q)) {
     sendWelcomeInteractive();
     return null;
   }
