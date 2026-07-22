@@ -1,11 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <ellipse cx="32" cy="54" rx="16" ry="6" fill="#d4af37" opacity=".1"/>
-  <path d="M22 54h20l6-8H16l6 8z"/>
-  <path d="M26 54v6h12v-6"/>
-  <rect x="24" y="16" width="16" height="34" rx="3"/>
-  <path d="M20 28h24v4H20z" fill="#d4af37" opacity=".1"/>
-  <rect x="20" y="28" width="24" height="4" rx="1"/>
-  <path d="M26 16l4-4h4l4 4"/>
-  <path d="M40 34q12 4 10 16t-12 6"/>
-  <circle cx="40" cy="52" r="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="darkBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="80%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE082"/>
+      <stop offset="30%" stop-color="#DFAC42"/>
+      <stop offset="70%" stop-color="#C68B27"/>
+      <stop offset="100%" stop-color="#F7D369"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA5"/>
+      <stop offset="50%" stop-color="#D49E35"/>
+      <stop offset="100%" stop-color="#91651B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#darkBg)" stroke="url(#goldGrad)" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.4"/>
+  <g fill="none" stroke="url(#goldGrad)" stroke-linecap="round" stroke-linejoin="round">
+    
+      <path d="M90 40 L110 40 L106 52 L94 52 Z" stroke-width="2" fill="url(#goldGrad)"/>
+      <ellipse cx="100" cy="54" rx="22" ry="4" stroke-width="2" fill="#242427"/>
+      <line x1="100" y1="54" x2="100" y2="104" stroke-width="4"/>
+      <circle cx="100" cy="70" r="6" stroke-width="2" fill="url(#goldGrad)"/>
+      <circle cx="100" cy="88" r="8" stroke-width="2" fill="url(#goldGrad)"/>
+      <path d="M88 104 C80 110 74 122 74 138 C74 148 84 154 100 154 C116 154 126 148 126 138 C126 122 120 110 112 104 Z" stroke-width="3" fill="#18181b"/>
+      <path d="M112 100 C135 100 148 115 144 135 C140 150 128 152 120 146" stroke-width="2.5" stroke-dasharray="4 2"/>
+      <path d="M144 135 L154 145" stroke-width="3"/>
+    
+  </g>
 </svg>

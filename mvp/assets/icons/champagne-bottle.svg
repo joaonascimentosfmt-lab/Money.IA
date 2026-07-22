@@ -1,12 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M26 6l-8 14v32a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V20l-8-14h-4z"/>
-  <rect x="22" y="10" width="20" height="4" rx="1"/>
-  <path d="M18 26h28" stroke-width="1.5" opacity=".3"/>
-  <ellipse cx="32" cy="6" rx="6" ry="3" transform="rotate(-20 32 6)"/>
-  <path d="M32 6V2"/>
-  <path d="M40 4q6-4 8-6M24 4q-6-4-8-6" stroke-width="1.8"/>
-  <circle cx="22" cy="32" r="2" fill="#d4af37" opacity=".4"/>
-  <circle cx="30" cy="36" r="1.5" fill="#d4af37" opacity=".3"/>
-  <circle cx="38" cy="30" r="2" fill="#d4af37" opacity=".4"/>
-  <circle cx="44" cy="38" r="1" fill="#d4af37" opacity=".3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="darkBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="80%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE082"/>
+      <stop offset="30%" stop-color="#DFAC42"/>
+      <stop offset="70%" stop-color="#C68B27"/>
+      <stop offset="100%" stop-color="#F7D369"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA5"/>
+      <stop offset="50%" stop-color="#D49E35"/>
+      <stop offset="100%" stop-color="#91651B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#darkBg)" stroke="url(#goldGrad)" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.4"/>
+  <g fill="none" stroke="url(#goldGrad)" stroke-linecap="round" stroke-linejoin="round">
+    
+      <g transform="rotate(-30 100 100)">
+        <path d="M82 80 L86 152 L114 152 L118 80 C118 70 112 64 104 60 L104 46 L96 46 L96 60 C88 64 82 70 82 80 Z" stroke-width="3" fill="#18181b"/>
+        <rect x="94" y="86" width="22" height="40" rx="1" stroke-width="1.5" fill="#242427"/>
+        <polygon points="94,28 106,28 108,38 92,38" stroke-width="2" fill="url(#goldGrad)"/>
+      </g>
+      <path d="M60 40 L45 28 M80 30 L80 15 M100 35 L115 22 M50 60 L32 55" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="55" cy="30" r="3" fill="url(#goldGrad)"/>
+      <circle cx="90" cy="20" r="2" fill="url(#goldGrad)"/>
+      <circle cx="42" cy="48" r="2.5" fill="url(#goldGrad)"/>
+      <circle cx="108" cy="28" r="3.5" fill="url(#goldGrad)"/>
+    
+  </g>
 </svg>

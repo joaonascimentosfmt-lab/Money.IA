@@ -1,9 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M10 4h8l2 8v40a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V12l2-8h8"/>
-  <path d="M12 16h22"/>
-  <rect x="14" y="20" width="8" height="24" rx="2" fill="#d4af37" opacity=".1"/>
-  <rect x="22" y="26" width="4" height="14" rx="1" fill="#d4af37" opacity=".08"/>
-  <path d="M50 18q-8 0-10 14t0 18q2 4 10 4"/>
-  <path d="M50 54l6 8H44l6-8z" fill="#d4af37" opacity=".15"/>
-  <ellipse cx="50" cy="18" rx="5" ry="2" fill="#d4af37" opacity=".15"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="darkBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="80%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE082"/>
+      <stop offset="30%" stop-color="#DFAC42"/>
+      <stop offset="70%" stop-color="#C68B27"/>
+      <stop offset="100%" stop-color="#F7D369"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA5"/>
+      <stop offset="50%" stop-color="#D49E35"/>
+      <stop offset="100%" stop-color="#91651B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#darkBg)" stroke="url(#goldGrad)" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.4"/>
+  <g fill="none" stroke="url(#goldGrad)" stroke-linecap="round" stroke-linejoin="round">
+    
+      <path d="M68 76 L72 152 L98 152 L102 76 C102 68 98 62 90 58 L90 44 L80 44 L80 58 C72 62 68 68 68 76 Z" stroke-width="3" fill="#18181b"/>
+      <rect x="80" y="38" width="10" height="6" fill="url(#goldGrad)"/>
+      <rect x="73" y="90" width="24" height="38" rx="1" stroke-width="1.5" fill="#242427"/>
+      <path d="M116 96 C116 120 126 126 134 126 C142 126 152 120 152 96 Z" stroke-width="2.5" fill="#18181b"/>
+      <line x1="134" y1="126" x2="134" y2="152" stroke-width="2.5"/>
+      <line x1="122" y1="152" x2="146" y2="152" stroke-width="2.5"/>
+      <path d="M120 106 C128 110 140 110 148 106" stroke-width="1.5" fill="none"/>
+    
+  </g>
 </svg>

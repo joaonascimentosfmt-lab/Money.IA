@@ -1,10 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M14 40q0 10 8 10h8q8 0 8-10v-6H14v6z"/>
-  <path d="M14 34h24"/>
-  <line x1="20" y1="34" x2="20" y2="22" stroke-width="1.5" opacity=".4"/>
-  <line x1="28" y1="34" x2="28" y2="22" stroke-width="1.5" opacity=".4"/>
-  <path d="M26 22V14"/>
-  <path d="M16 12q-6-10-12-4-4 4 2 10" stroke-width="1.8"/>
-  <path d="M36 12q6-10 12-4 4 4-2 10" stroke-width="1.8"/>
-  <path d="M26 14q8-12 16-6" stroke-width="1.8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="darkBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="80%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE082"/>
+      <stop offset="30%" stop-color="#DFAC42"/>
+      <stop offset="70%" stop-color="#C68B27"/>
+      <stop offset="100%" stop-color="#F7D369"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA5"/>
+      <stop offset="50%" stop-color="#D49E35"/>
+      <stop offset="100%" stop-color="#91651B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#darkBg)" stroke="url(#goldGrad)" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.4"/>
+  <g fill="none" stroke="url(#goldGrad)" stroke-linecap="round" stroke-linejoin="round">
+    
+      <path d="M72 70 C70 100 64 128 78 146 C84 152 116 152 122 146 C136 128 130 100 128 70 Z" stroke-width="3" fill="#18181b"/>
+      <ellipse cx="100" cy="70" rx="28" ry="8" stroke-width="2.5" fill="#242427"/>
+      <path d="M74 70 C80 60 120 60 126 70 Z" stroke-width="2" fill="url(#goldGrad)"/>
+      <line x1="108" y1="70" x2="132" y2="38" stroke-width="3.5"/>
+      <circle cx="134" cy="35" r="3" fill="url(#goldGrad)"/>
+      <path d="M88 100 C80 90 92 82 98 90 C104 82 116 90 108 100 C104 108 92 108 88 100 Z" stroke-width="1.5" fill="url(#goldGrad)" fill-opacity="0.3"/>
+    
+  </g>
 </svg>
