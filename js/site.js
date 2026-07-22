@@ -120,7 +120,7 @@
     var total = getCartTotal().toFixed(2);
     var msg = 'NOVO PEDIDO\n\nItens:\n' + items + '\n\nTotal: R$ ' + total;
     var encoded = encodeURIComponent(msg);
-    window.open('https://wa.me/5565999998888?text=' + encoded, '_blank');
+    window.open('https://wa.me/5565992475643?text=' + encoded, '_blank');
     cart = [];
     updateCartBadge();
     renderCartDrawer();
@@ -241,8 +241,8 @@
   // ============ CHAT RESPONSES ============
   var STORE = {
     address: 'Rua Exemplo, 123 - Centro, Cuiaba - MT',
-    hours: 'Seg a Sab: 09h as 23h | Dom: 10h as 22h',
-    phone: '(65) 99999-8888',
+    hours: 'Seg a Sab: 11h as 22h | Dom: 10h as 22h',
+    phone: '(65) 99247-5643',
     payment: 'PIX, Dinheiro, Cartao de Debito e Credito',
     delivery: 'Taxa: R$5,00 | Minimo: R$30,00 | Tempo: 45min',
     neighborhoods: ['Centro', 'CPA', 'Alicerce', 'Alvorada', 'Morada do Ouro', 'Quilombo', 'Santa Rosa']
