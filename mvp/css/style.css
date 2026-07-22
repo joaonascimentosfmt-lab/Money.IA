@@ -510,6 +510,7 @@ a { color: var(--gold); text-decoration: none; }
   justify-content: center;
   flex-shrink: 0;
 }
+.product-card-img img,
 .product-card-img svg { width: 36px; height: 36px; }
 .product-card-info { flex: 1; min-width: 0; }
 .product-card-name {
@@ -721,6 +722,7 @@ a { color: var(--gold); text-decoration: none; }
   justify-content: center;
   flex-shrink: 0;
 }
+.product-item-img img,
 .product-item-img svg { width: 30px; height: 30px; }
 .product-item-info {
   flex: 1;
@@ -1152,6 +1154,7 @@ a { color: var(--gold); text-decoration: none; }
   .product-item-desc { font-size: 11px; }
   .product-item-price { font-size: 13px; }
   .product-item-img { width: 44px; height: 44px; min-width: 44px; }
+  .product-item-img img,
   .product-item-img svg { width: 24px; height: 24px; }
 }
 

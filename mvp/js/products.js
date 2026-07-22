@@ -948,26 +948,27 @@ function searchProducts(query) {
 }
 
 function getProductIcon(category) {
-  const icons = {
-    whisky: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h36v4l-4 6v36H18V18l-4-6V8z"/><rect x="22" y="24" width="20" height="16" rx="2" fill="#d4af37" opacity=".15"/><rect x="6" y="38" width="18" height="18" rx="2"/><path d="M8 48h14v4a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-4z" fill="#d4af37" opacity=".3"/><rect x="10" y="42" width="4" height="4" rx="1" fill="#d4af37" opacity=".3"/><rect x="15" y="46" width="4" height="4" rx="1" fill="#d4af37" opacity=".3"/></svg>`,
-    vodka: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4h16v4l-4 4v44H20V12l-4-4V4z"/><line x1="24" y1="4" x2="24" y2="2"/><line x1="40" y1="4" x2="40" y2="2"/><circle cx="16" cy="50" r="8"/><circle cx="16" cy="50" r="3" fill="#d4af37" opacity=".35"/></svg>`,
-    gin: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8h24v4l-4 6v40H24V18l-4-6V8z"/><path d="M24 8V4"/><circle cx="14" cy="20" r="2.5" fill="#d4af37"/><circle cx="14" cy="30" r="2" fill="#d4af37"/><path d="M8 18q-2-6 2-10 4-2 8 2" stroke-width="1.8"/><path d="M24 24h16m-16 8h16"/></svg>`,
-    cerveja: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="18" width="28" height="38" rx="4"/><path d="M42 28h6a6 6 0 0 1 0 12h-6"/><path d="M12 20q2-6 6-2 4-6 8-2 4-6 8-2 4-6 8-2 4 2 2 6" stroke-width="2.5"/><path d="M14 40h28m-28-8h28"/><line x1="14" y1="48" x2="42" y2="48"/></svg>`,
-    energetico: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="4" width="28" height="56" rx="6"/><path d="M26 8l-10 26h12L22 56l20-26H32l8-22z"/></svg>`,
-    vinho: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h6l2 6v36a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V14l2-6h6"/><path d="M14 14h18"/><path d="M48 16q-6 0-8 12t0 16q2 4 8 4"/><path d="M48 48l4 12H44l4-12z" fill="#d4af37" opacity=".2"/></svg>`,
-    espumante: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l-8 12v34a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V18l-8-12h-4z"/><path d="M18 22h28"/><ellipse cx="32" cy="8" rx="7" ry="3" transform="rotate(-20 32 8)"/><path d="M32 8V4"/><path d="M40 6q4-4 8-6"/><path d="M24 6q-4-4-8-6"/><circle cx="20" cy="28" r="2" fill="#d4af37" opacity=".5"/><circle cx="28" cy="34" r="1.5" fill="#d4af37" opacity=".4"/><circle cx="36" cy="28" r="2" fill="#d4af37" opacity=".5"/><circle cx="44" cy="36" r="1.5" fill="#d4af37" opacity=".4"/></svg>`,
-    narguile: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 52h28l6-8H12l6 8z" fill="#d4af37" opacity=".15"/><path d="M24 52v8h16v-8"/><rect x="24" y="12" width="16" height="36" rx="3"/><rect x="18" y="24" width="28" height="5" rx="1" fill="#d4af37" opacity=".2"/><path d="M40 34q10 4 8 14t-12 6"/><circle cx="40" cy="48" r="3"/></svg>`,
-    ervas: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 42q0 8 8 8h8q8 0 8-8v-4H10v4z"/><path d="M10 38h24"/><path d="M22 38V18"/><path d="M16 16q-4-6-8-2-2 2 0 6"/><path d="M28 16q4-6 8-2 2 2 0 6"/><path d="M22 18q6-8 12-4"/></svg>`,
-    terere: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 44q0 8 8 8h6q8 0 8-8v-4H8v4z"/><path d="M8 40h22"/><line x1="19" y1="40" x2="19" y2="18"/><line x1="15" y1="18" x2="23" y2="18"/><rect x="40" y="16" width="18" height="42" rx="3"/><path d="M40 16V8a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8"/></svg>`,
-    copos: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 10v34a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4V18l-4-10H18z"/><rect x="22" y="20" width="20" height="22" rx="2" fill="#d4af37" opacity=".15"/><rect x="16" y="6" width="32" height="8" rx="3"/></svg>`,
-    garrafas: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="12" width="16" height="46" rx="3"/><path d="M24 12V6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6"/><rect x="28" y="18" width="8" height="28" rx="1" fill="#d4af37" opacity=".15"/><path d="M40 26q8 4 8 12t-8 12"/></svg>`,
-    gelo: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="20" height="20" rx="3"/><line x1="16" y1="12" x2="16" y2="20"/><line x1="12" y1="16" x2="20" y2="16"/><rect x="38" y="4" width="20" height="24" rx="3"/><line x1="48" y1="10" x2="48" y2="22"/><line x1="42" y1="16" x2="54" y2="16"/><circle cx="16" cy="48" r="10"/><circle cx="16" cy="48" r="3" fill="#d4af37" opacity=".3"/><path d="M10 44l12-8m-8 12l8-12"/></svg>`,
-    maromba: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="10" r="6"/><path d="M20 16q-4 8-8 18 2 6 6 8l14-16 14 16q4-2 6-8-4-10-8-18"/><path d="M20 16q-8 2-12 8"/><path d="M44 16q8 2 12 8"/><circle cx="6" cy="30" r="4" fill="#d4af37" opacity=".2"/><circle cx="58" cy="30" r="4" fill="#d4af37" opacity=".2"/><line x1="6" y1="26" x2="6" y2="34"/><line x1="58" y1="26" x2="58" y2="34"/></svg>`,
-    pods: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="14" width="24" height="40" rx="5"/><rect x="18" y="8" width="28" height="10" rx="3"/><rect x="24" y="4" width="16" height="6" rx="2"/><circle cx="32" cy="26" r="4" fill="#d4af37" opacity=".3"/><circle cx="32" cy="26" r="2" fill="#d4af37"/><path d="M28 48q-2 4-6 6-4 2-8 4" opacity=".4"/><path d="M36 48q2 4 6 6 4 2 8 4" opacity=".4"/></svg>`,
-    tabacaria: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="36" height="42" rx="3"/><path d="M14 32h36"/><path d="M14 14l8-6v8z" fill="#d4af37" opacity=".15"/><rect x="20" y="36" width="5" height="16" rx="1"/><rect x="28" y="36" width="5" height="16" rx="1"/><rect x="36" y="36" width="5" height="16" rx="1"/><path d="M48 8q4 2 4 6t-4 6"/><circle cx="50" cy="10" r="1.5" fill="#d4af37" opacity=".5"/></svg>`,
-    acessorios: `<svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="4"/><circle cx="12" cy="28" r="4"/><path d="M12 18v4l8 6"/><path d="M12 24v-4l8-6"/><rect x="38" y="8" width="16" height="26" rx="2"/><rect x="40" y="6" width="12" height="4" rx="1"/><path d="M14 44h24v14H14z" rx="2"/><path d="M38 44l6-8v8z"/></svg>`,
+  const files = {
+    whisky: 'whisky-bottle.svg',
+    vodka: 'vodka-bottle.svg',
+    gin: 'gin-bottle.svg',
+    cerveja: 'beer-mug.svg',
+    energetico: 'energy-can.svg',
+    vinho: 'wine-bottle-glass.svg',
+    espumante: 'champagne-bottle.svg',
+    narguile: 'hookah.svg',
+    ervas: 'mate-leaves.svg',
+    terere: 'terere-kit.svg',
+    copos: 'thermal-cup.svg',
+    garrafas: 'thermal-bottle.svg',
+    gelo: 'ice-cubes-fruit.svg',
+    maromba: 'bodybuilder.svg',
+    pods: 'vape-device.svg',
+    tabacaria: 'cigarette-pack.svg',
+    acessorios: 'multi-tool.svg'
   };
-  return icons[category] || icons.whisky;
+  const file = files[category] || 'whisky-bottle.svg';
+  return `<img src="assets/icons/${file}" alt="${category}" class="category-icon">`;
 }
 
 function getCustomProducts() {
